@@ -1,0 +1,104 @@
+// Fonts
+h1{ font-size: 80px;}
+a {
+    color: white !important;
+}
+
+a:link {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+a:hover {
+    color: white;
+}
+
+.card {
+    display: inline-block !important;
+    a{
+        background-color: #4e4e4e;
+        border-color: #005cbf;
+    }
+}
+.card-columns {
+    column-count: 3;
+}
+.timer{
+    h1{
+        font-size: 20 rem;
+    }
+}
+body{
+    display: none;
+}
+
+          
+// // @import url('https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700|Roboto:400,500display&=swap');
+
+// // Bootstrap 4 required
+//@import '~bootstrap/scss/functions';
+// @import './vendor/bootstrap/variables';
+// @import 'vendor/bootstrap/mixins/paragraphs';
+// @import '~bootstrap/scss/variables';
+// @import '~bootstrap/scss/mixins';
+// @import '~bootstrap/scss/utilities';
+
+// // Bootstrap 4 Layout and Components (import as needed!)
+// @import '~bootstrap/scss/root';
+// @import '~bootstrap/scss/reboot';
+// @import '~bootstrap/scss/type';
+// @import '~bootstrap/scss/images'; 
+// //  @import "~bootstrap/scss/code";
+// @import '~bootstrap/scss/grid';
+// //  @import "~bootstrap/scss/tables";
+// //  @import "~bootstrap/scss/forms";
+// @import '~bootstrap/scss/buttons';
+// @import '~bootstrap/scss/transitions';
+// @import '~bootstrap/scss/dropdown';
+// //  @import "~bootstrap/scss/button-group";
+// //  @import "~bootstrap/scss/input-group";
+// //  @import "~bootstrap/scss/custom-forms";
+// @import '~bootstrap/scss/nav';
+// @import '~bootstrap/scss/navbar';
+// @import '~bootstrap/scss/card';
+// //  @import "~bootstrap/scss/breadcrumb";
+// //  @import "~bootstrap/scss/pagination";
+// //  @import "~bootstrap/scss/badge";
+// //  @import "~bootstrap/scss/jumbotron";
+// //  @import "~bootstrap/scss/alert";
+// //  @import "~bootstrap/scss/progress";
+// @import '~bootstrap/scss/media';
+// @import '~bootstrap/scss/list-group';
+// //  @import "~bootstrap/scss/close";
+// //  @import "~bootstrap/scss/toasts";
+// //  @import "~bootstrap/scss/modal";
+// @import "~bootstrap/scss/tooltip";
+// //  @import "~bootstrap/scss/popover";
+// @import '~bootstrap/scss/carousel';
+// //  @import "~bootstrap/scss/spinners";
+// //  @import "~bootstrap/scss/print";
+
+// // Extended Bootstrap 
+// @import 'vendor/bootstrap/typography';
+// @import 'vendor/bootstrap/tooltips';
+
+// // Other vendors
+// @import '~choices.js/src/styles/choices';
+// @import 'vendor/choices/choices';
+
+// // AU Mixins
+// @import 'mixins/index';
+
+// // AU Bootstrap styles and component customisation
+// @import 'globals/index';
+// @import 'typography/index';
+// @import './base';
+// @import 'elements/index';
+// @import 'animations/index';
+// @import 'banners/index';
+// @import 'cards/index';
+// @import 'carousel/index';
+// @import 'copy/index';
+// @import 'forms/index';
+// @import 'layout/index';
+

@@ -1,0 +1,6 @@
+@for $i from 1 through 20{
+    .border-#{$i}{
+        border-style: solid;
+        border-width: #{$i}px;
+    }
+}

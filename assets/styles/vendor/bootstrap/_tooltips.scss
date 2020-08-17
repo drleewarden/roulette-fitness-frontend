@@ -1,0 +1,58 @@
+.info-tooltip{
+    position: relative;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.tooltip{  
+
+    @include media-breakpoint-up(xl){
+        left: 7px !important; 
+    }
+
+    &.show{
+        opacity: 1;
+    }
+
+    &[x-placement="bottom"]{
+        .arrow{
+            &:before{
+                border-bottom-color: $dark-sandstone;
+            }       
+        }  
+    }
+
+    &[x-placement="top"]{
+        .arrow{
+            &:before{
+                border-top-color: $dark-sandstone;
+            }       
+        }  
+    }
+
+    &[x-placement="left"]{
+        .arrow{
+            &:before{
+                border-left-color: $dark-sandstone;
+            }       
+        }  
+    }
+
+    &[x-placement="right"]{
+        .arrow{
+            &:before{
+                border-right-color: $dark-sandstone;
+            }       
+        }  
+    }
+     
+
+    .tooltip-inner{
+        background-color: $dark-sandstone;
+        color: $dark-black;
+        padding: 1rem;
+        font-family: $font-family-sans-serif;
+    }
+}

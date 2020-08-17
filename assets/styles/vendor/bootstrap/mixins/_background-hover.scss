@@ -1,0 +1,21 @@
+// stylelint-disable declaration-no-important
+// This is a copy of bg-variant but adds :hover capability
+
+@mixin bg-variant-hover($parent, $color) {
+  #{$parent} {
+    border: 0 transparent;
+    transition: $transition-base;
+
+    @include media-breakpoint-up(md) {
+      &:hover {
+        background-color: $color !important;
+        border-color: $color !important;
+        box-shadow: $box-shadow-lg !important;
+      }
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @include bg-variant-hover('.bg-#{$color}-hover', $value);
+}
