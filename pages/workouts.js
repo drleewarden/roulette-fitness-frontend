@@ -53,7 +53,7 @@ class Workouts extends React.Component {
 const GET_EXERCISES_DISHES =  gql`
 {
   exercises {
-    uid
+    unid
     title
     description
     image {
