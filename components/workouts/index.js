@@ -93,7 +93,7 @@ const { dispatch } = globalState;
 const query = gql`
   {
     exercises {
-      uid
+      unid
       title
       description
       image {
