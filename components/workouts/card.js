@@ -28,7 +28,7 @@ export const Exercise =(props)=> {
                 <CardImg
                   top={true}
                   style={{ height: 250 }}
-                  src={`https://fast-fitness-app.herokuapp.com${exercise.image[0].url}`}
+                  src={`https://roulette-fitness-app.herokuapp.com${exercise.image[0].url}`}
                 />
 
                 <CardBody style={{border: '1px solid grey'}}>
@@ -37,8 +37,8 @@ export const Exercise =(props)=> {
                   <CardText>{exercise.description}</CardText>
                   <Link
                   style={{margin:'auto'}}
-                    as={`/restaurants/${exercise.uid}`}
-                    href={`/restaurants?id=${exercise.uid}`}
+                    as={`/restaurants/${exercise.unid}`}
+                    href={`/restaurants?id=${exercise.unid}`}
                   >
                     <a className="btn btn-primary mx-auto w-100">View More</a>
                   </Link>
