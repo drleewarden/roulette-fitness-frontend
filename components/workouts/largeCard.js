@@ -6,7 +6,7 @@ export const LargeCard =(props)=> {
   return (
     <Fragment>
       
-        <img
+        {/* <img
           key={exercise.uid}
           top={true}
           style={{ 
@@ -16,7 +16,7 @@ export const LargeCard =(props)=> {
             zIndex:-1
           }}
           src={`${exercise.image[0].url}`}
-        />
+        /> */}
 
           <div style={{
             padding: '20px',

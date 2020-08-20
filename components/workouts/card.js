@@ -25,11 +25,11 @@ export const Exercise =(props)=> {
                 className="h-100 col-sm-12 col-md-6 col-lg-4"
                 key={exercise.uid}
               >
-                <CardImg
+                {/* <CardImg
                   top={true}
                   style={{ height: 250 }}
                   src={`${exercise.image[0].url}`}
-                />
+                /> */}
 
                 <CardBody style={{border: '1px solid grey'}}>
                   {/* <Title>dsfadfd</Title> */}
