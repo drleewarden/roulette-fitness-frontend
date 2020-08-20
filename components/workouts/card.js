@@ -28,7 +28,7 @@ export const Exercise =(props)=> {
                 <CardImg
                   top={true}
                   style={{ height: 250 }}
-                  src={`https://roulette-fitness.s3-ap-southeast-2.amazonaws.com/${exercise.image[0].url}`}
+                  src={`${exercise.image[0].url}`}
                 />
 
                 <CardBody style={{border: '1px solid grey'}}>

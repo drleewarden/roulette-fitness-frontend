@@ -15,7 +15,7 @@ export const LargeCard =(props)=> {
             left: 0,
             zIndex:-1
           }}
-          src={`https://roulette-fitness.s3-ap-southeast-2.amazonaws.com/${exercise.image[0].url}`}
+          src={`${exercise.image[0].url}`}
         />
 
           <div style={{
