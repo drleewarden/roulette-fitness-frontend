@@ -6,7 +6,7 @@ export const LargeCard =(props)=> {
   return (
     <Fragment>
       
-        {/* <img
+        <img
           key={exercise.uid}
           top={true}
           style={{ 
@@ -15,8 +15,8 @@ export const LargeCard =(props)=> {
             left: 0,
             zIndex:-1
           }}
-          src={`${exercise.image[0].url}`}
-        /> */}
+          src={`https://roulette-fitness.s3.ap-southeast-2.amazonaws.com${exercise.image[0].url}`}
+        />
 
           <div style={{
             padding: '20px',

@@ -10,7 +10,7 @@ export const AppContext = React.createContext();
 const LIST_WORKOUT = gql`
 {
   exercises {
-    uid
+    unid
     title
     description
     image {
