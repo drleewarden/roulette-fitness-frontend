@@ -53,7 +53,7 @@ const { dispatch } = globalState;
           <div className="container mx-auto">
             {searchQuery.map(exercise => (
                 <Fragment>
-                  <Exercise exercise={exercise} key={exercise.uid} />
+                  <Exercise exercise={exercise} key={exercise.unid} />
                 </Fragment>
                       
                     ))}

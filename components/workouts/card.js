@@ -23,7 +23,7 @@ export const Exercise =(props)=> {
       <Card
                 style={{ margin: "0 0px 20px", border: 0}}
                 className="h-100 col-sm-12 col-md-6 col-lg-4"
-                key={exercise.uid}
+                key={exercise.unid}
               >
                 {/* <CardImg
                   top={true}

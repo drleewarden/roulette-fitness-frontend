@@ -39,7 +39,7 @@ const RestaurantList = (
               <Card
                 style={{ width: "30%", margin: "0 10px" }}
                 className="h-100"
-                key={res.id}
+                key={res.unid}
               >
                 <CardImg
                   top={true}
