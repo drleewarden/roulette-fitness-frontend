@@ -3,46 +3,48 @@ import { withRouter } from "next/router";
 import { graphql } from "react-apollo";
 import { compose } from "recompose";
 import { withContext } from "../components/Context/AppProvider";
-import {GetWorkout} from "../components/workouts/workout_list"
-import Stopwatch from "../components/StopWatch"
-import {
-  Container
-} from "reactstrap";
+import { GetWorkout } from "../components/workouts/workout_list";
+import Stopwatch from "../components/StopWatch";
+import { Container } from "reactstrap";
 import Cart from "../components/Cart/Cart";
+// import WebWorkerTimer from "../components/timer-web-worker";
 import defaultPage from "../hocs/defaultPage";
+// import MainTimer from "../components/mainTimer";
+// import registerServiceWorker from "../components/registerServiceWorker";
 // update
 class Workouts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      allExercises: []
-    },
-    this.loadList = false
+    (this.state = {
+      allExercises: [],
+    }),
+      (this.loadList = false);
     this.createWorkoutList = this.createWorkoutList.bind(this);
+    // registerServiceWorker();
   }
-  createWorkoutList(){
-    this.setState({ allExercises: this.props.data.exercises});
+  createWorkoutList() {
+    this.setState({ allExercises: this.props.data.exercises });
   }
-  componentDidMount(){
-    this.loadList = true
+  componentDidMount() {
+    this.loadList = true;
   }
   render() {
     const {
       data: { loading, error, exercises },
       router,
       context,
-      isAuthenticated
+      isAuthenticated,
     } = this.props;
 
     if (error) return "Error Loading Dishes";
 
     if (exercises) {
-      
       return (
-       <>
-         {/* {this.loadList ? <Stopwatch exercises={exercises} /> : ''} */}
-         <button onClick={this.createWorkoutList}>get started</button>
-         <GetWorkout exerciseList={exercises} />
+        <>
+          {/* {this.loadList ? <Stopwatch exercises={exercises} /> : ''} */}
+          {/* <MainTimer /> */}
+          {/* <WebWorkerTimer /> */}
+          <GetWorkout exerciseList={exercises} />
         </>
       );
     }
@@ -50,17 +52,17 @@ class Workouts extends React.Component {
   }
 }
 
-const GET_EXERCISES_DISHES =  gql`
-{
-  exercises {
-    unid
-    title
-    description
-    image {
-      url
+const GET_EXERCISES_DISHES = gql`
+  {
+    exercises {
+      unid
+      title
+      description
+      image {
+        url
+      }
     }
   }
-}
 `;
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (RestaurantList)
@@ -70,6 +72,6 @@ export default compose(
   defaultPage,
   withContext,
   graphql(GET_EXERCISES_DISHES, {
-    props: ({ data }) => ({ data })
+    props: ({ data }) => ({ data }),
   })
 )(Workouts);
