@@ -13,6 +13,8 @@ class MainTimer extends Component {
     this.ms = 0;
     this.s = 0;
     this.m = 0;
+    this.startBtn = true;
+    this.intervalId;
     this.state = {
       count: 0,
       milliseconds: 0,
@@ -34,7 +36,7 @@ class MainTimer extends Component {
     this.setState({
       milliseconds: Math.floor(count % 1000),
       seconds: (Math.floor(count / 10) % 60) + 1,
-      percentage: this.calculatePercent((Math.floor(count / 10) % 60) + 1, 60),
+      percentage: this.calculatePercent((Math.floor(count / 10) % 60), 60),
     });
 
     if (this.state.minutes === 9) {
@@ -45,13 +47,24 @@ class MainTimer extends Component {
   }
 
   init() {
-    const intervalId = workerTimers.setInterval(() => {
+    
+  }
+  pause =()=> {
+    debugger;
+    this.startBtn = true;
+    workerTimers.clearInterval(this.intervalId);
+  }
+
+  start =()=> {
+    debugger;
+    this.intervalId = workerTimers.setInterval(() => {
       // do something many times
       this.setState({
         count: this.state.count + 1,
       });
       this.calculations(this.state.count);
     }, 100);
+    this.startBtn = false;
   }
 
   calculatePercent(percent, num) {
@@ -66,6 +79,15 @@ class MainTimer extends Component {
     return (
       <div className="App-bottom">
         <section className="App-left">
+          {
+            this.startBtn && 
+          <button onClick={()=>this.start()}>start</button>
+          }
+           {
+            !this.startBtn && 
+          <button onClick={()=>this.pause()}>pause</button>
+          }
+          
           progress: {this.state.percentage}
           <Progress value={this.state.percentage} />
           <h2>
