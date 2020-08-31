@@ -9,7 +9,7 @@ import { Container } from "reactstrap";
 import Cart from "../components/Cart/Cart";
 // import WebWorkerTimer from "../components/timer-web-worker";
 import defaultPage from "../hocs/defaultPage";
-// import MainTimer from "../components/mainTimer";
+import MainTimer from "../components/webworker/mainTimer";
 // import registerServiceWorker from "../components/registerServiceWorker";
 // update
 class Workouts extends React.Component {
@@ -42,7 +42,7 @@ class Workouts extends React.Component {
       return (
         <>
           {/* {this.loadList ? <Stopwatch exercises={exercises} /> : ''} */}
-          {/* <MainTimer /> */}
+          <MainTimer />
           {/* <WebWorkerTimer /> */}
           <GetWorkout exerciseList={exercises} />
         </>
