@@ -10,11 +10,7 @@ import { Progress } from "reactstrap";
 class MainTimer extends Component {
   constructor(props) {
     super(props);
-    this.ms = 0;
-    this.s = 0;
-    this.m = 0;
-    // this.startBtn = true;
-    this.intervalId;
+    this.intervalId = null;
     this.state = {
       count: 0,
       milliseconds: 0,
@@ -23,23 +19,64 @@ class MainTimer extends Component {
       rounds: 0,
       cluster: 0,
       percentage: 0,
+      workout: false,
+      rest: false,
       startBtn: true,
     };
     this.init();
   }
-  calculations(count) {
-    if (this.state.seconds === 60) {
+
+  rest(){
+    this.reset()
+    workerTimers.clearInterval(this.intervalId);
+    debugger
+    this.intervalId = workerTimers.setInterval(() => {
+      // do something many times
       this.setState({
-        //percentage: calculatePercent(this.state.minutes + 1, 60),
-        minutes: this.state.minutes + 1,
+        count: this.state.count + 1,
       });
+      if(this.state.rest){
+        this.setState({
+          percentage: this.calculatePercent(Math.floor(this.state.count / 10), 20),
+        })
+      } 
+      if(this.state.count === 200){
+        this.setState({
+          workout: true,
+          rest: false
+        });
+        this.rest();
+        this.start();
+      }
+    }, 100);
+
+    
+  };
+    
+  reset(){
+    this.setState({
+      count: 0,
+      milliseconds: 0,
+      seconds: 0,
+      minutes: 0,
+    });
+  }
+
+  calculations(count) {
+    if (this.state.seconds === 10) {
+      this.setState({
+        workout: false,
+        rest: true
+      });
+      this.reset()
+      this.rest()
     }
     this.setState({
       milliseconds: Math.floor(count % 1000),
       seconds: (Math.floor(count / 10) % 60) + 1,
     });
     this.setState({
-      percentage: this.calculatePercent(Math.floor(count / 6), 60),
+      percentage: this.calculatePercent(Math.floor(count / 10), 60),
     });
 
     if (this.state.minutes === 9) {
@@ -50,8 +87,8 @@ class MainTimer extends Component {
   }
 
   init() {}
+
   pause = () => {
-    debugger;
     this.setState({
       startBtn: true,
     });
@@ -60,18 +97,25 @@ class MainTimer extends Component {
 
   start = () => {
     debugger;
+    if (this.intervalId !== null ){
+      workerTimers.clearInterval(this.intervalId);
+    }
+
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
       this.setState({
         count: this.state.count + 1,
         startBtn: false,
+        workout: true,
+        rest: false
+        
       });
       this.calculations(this.state.count);
     }, 100);
   };
 
   calculatePercent(percent, num) {
-    return (percent / 100) * num;
+    return percent*100/num;
   }
 
   componentDidMount = () => {
@@ -88,16 +132,20 @@ class MainTimer extends Component {
           {!this.state.startBtn && (
             <button onClick={() => this.pause()}>pause</button>
           )}
+          
           progress: {this.state.percentage}
-          <Progress value={this.state.percentage} />
-          <h2>
+          {
+            this.state.rest&&
+            <Progress  color="danger" value={this.state.percentage} />
+          }
+          {
+            this.state.workout&&
+            <Progress value={this.state.percentage} />
+          }          <h2>
             seconds: {this.state.seconds}, minutes:
             {this.state.minutes}
           </h2>
           <p className="text-center">Total User Count: {this.state.count}</p>
-          {/* <button className="btn-direct" onClick={this.fetchUsers}>
-            Fetch Users Directly
-          </button> */}
         </section>
       </div>
     );
