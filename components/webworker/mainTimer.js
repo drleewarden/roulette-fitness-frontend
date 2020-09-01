@@ -13,7 +13,7 @@ class MainTimer extends Component {
     this.ms = 0;
     this.s = 0;
     this.m = 0;
-    this.startBtn = true;
+    // this.startBtn = true;
     this.intervalId;
     this.state = {
       count: 0,
@@ -23,20 +23,23 @@ class MainTimer extends Component {
       rounds: 0,
       cluster: 0,
       percentage: 0,
+      startBtn: true,
     };
     this.init();
   }
   calculations(count) {
     if (this.state.seconds === 60) {
       this.setState({
-        percentage: calculatePercent(this.state.minutes + 1, 60),
+        //percentage: calculatePercent(this.state.minutes + 1, 60),
         minutes: this.state.minutes + 1,
       });
     }
     this.setState({
       milliseconds: Math.floor(count % 1000),
       seconds: (Math.floor(count / 10) % 60) + 1,
-      percentage: this.calculatePercent((Math.floor(count / 10) % 60), 60),
+    });
+    this.setState({
+      percentage: this.calculatePercent(Math.floor(count / 6), 60),
     });
 
     if (this.state.minutes === 9) {
@@ -46,26 +49,26 @@ class MainTimer extends Component {
     }
   }
 
-  init() {
-    
-  }
-  pause =()=> {
+  init() {}
+  pause = () => {
     debugger;
-    this.startBtn = true;
+    this.setState({
+      startBtn: true,
+    });
     workerTimers.clearInterval(this.intervalId);
-  }
+  };
 
-  start =()=> {
+  start = () => {
     debugger;
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
       this.setState({
         count: this.state.count + 1,
+        startBtn: false,
       });
       this.calculations(this.state.count);
     }, 100);
-    this.startBtn = false;
-  }
+  };
 
   calculatePercent(percent, num) {
     return (percent / 100) * num;
@@ -79,15 +82,12 @@ class MainTimer extends Component {
     return (
       <div className="App-bottom">
         <section className="App-left">
-          {
-            this.startBtn && 
-          <button onClick={()=>this.start()}>start</button>
-          }
-           {
-            !this.startBtn && 
-          <button onClick={()=>this.pause()}>pause</button>
-          }
-          
+          {this.state.startBtn && (
+            <button onClick={() => this.start()}>start</button>
+          )}
+          {!this.state.startBtn && (
+            <button onClick={() => this.pause()}>pause</button>
+          )}
           progress: {this.state.percentage}
           <Progress value={this.state.percentage} />
           <h2>
