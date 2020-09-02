@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import * as workerTimers from "worker-timers";
 import { Progress } from "reactstrap";
-import TimeHandler from "../TimeHandles";
+import { Exercise } from "../workouts/card";
 
 class MainTimer extends Component {
   constructor(props) {
     super(props);
-    this.exercises = props.exercises;
+    const {exercises} = props;
     this.intervalId = null;
     this.state = {
       count: 0,
+      exerciseNumber: 0,
       milliseconds: 0,
       seconds: 0,
       minutes: 0,
       rounds: 0,
       cluster: 0,
+      exercises: exercises,
+      clusterArray: [],
       percentage: 0,
       workout: false,
       rest: false,
@@ -66,6 +69,7 @@ class MainTimer extends Component {
       this.setState({
         workout: false,
         rest: true,
+        exerciseNumber: this.state.exerciseNumber + 1
       });
       this.reset();
       this.rest();
@@ -93,11 +97,19 @@ class MainTimer extends Component {
     });
     workerTimers.clearInterval(this.intervalId);
   };
+  clusters (start,end ){
+    debugger
+    this.setState({ clusterArray: this.state.exercises.exerciseList.slice(start, end) });
 
+  }
   start = () => {
+    //rest
     if (this.intervalId !== null) {
       workerTimers.clearInterval(this.intervalId);
     }
+    // create clusters
+
+    this.clusters(0,3);
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
@@ -135,11 +147,11 @@ class MainTimer extends Component {
     return (
       <div className="App-bottom">
         <section>
-          <TimeHandler
+          {/* <TimeHandler
             cluster={this.state.cluster}
             timer={this.state.seconds}
             round={this.state.rounds}
-          />
+          /> */}
         </section>
         <section className="App-left">
           {this.state.startBtn && (
@@ -159,6 +171,15 @@ class MainTimer extends Component {
           </h2>
           <p className="text-center">Total User Count: {this.state.count}</p>
         </section>
+        <section>
+        <div className="cluster container">
+          {this.state.clusterArray.map((exercise) => {
+            return <Exercise exercise={exercise} key={exercise.unid} />;
+          })}
+        </div>
+        {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
+        </section>
+        <h2>exercise: {this.state.exerciseNumber}</h2>
       </div>
     );
   }

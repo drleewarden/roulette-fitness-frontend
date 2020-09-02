@@ -19,7 +19,8 @@ class Stopwatch extends React.Component {
       secondsElapsed: 0,
       oneMinTimer: 0,
       threeMinTimer: 0,
-      exercises: this.props.exercises.exerciseList,
+      exercises: this.props.exercises,
+      timer: this.props.timer,
       cluster: [],
     };
     this.activityState = "activity";
@@ -119,6 +120,7 @@ class Stopwatch extends React.Component {
       <Fragment>
         <section className="timer">
           <LocalState />
+    <h1>test: {this.state.timer}</h1>
           <div className="floating-text">
             <div className="w-33">
               <h1>

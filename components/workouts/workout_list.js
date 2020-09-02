@@ -6,7 +6,6 @@ import React, {
   useState,
   createContext,
 } from "react";
-import Stopwatch from "../StopWatch";
 import MainTimer from "../webworker/mainTimer";
 
 export const GetWorkout = (exerciseList) => {
