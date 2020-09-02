@@ -7,11 +7,8 @@ import { GetWorkout } from "../components/workouts/workout_list";
 import Stopwatch from "../components/StopWatch";
 import { Container } from "reactstrap";
 import Cart from "../components/Cart/Cart";
-// import WebWorkerTimer from "../components/timer-web-worker";
 import defaultPage from "../hocs/defaultPage";
-import MainTimer from "../components/webworker/mainTimer";
-// import registerServiceWorker from "../components/registerServiceWorker";
-// update
+
 class Workouts extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +17,6 @@ class Workouts extends React.Component {
     }),
       (this.loadList = false);
     this.createWorkoutList = this.createWorkoutList.bind(this);
-    // registerServiceWorker();
   }
   createWorkoutList() {
     this.setState({ allExercises: this.props.data.exercises });
@@ -42,8 +38,7 @@ class Workouts extends React.Component {
       return (
         <>
           {/* {this.loadList ? <Stopwatch exercises={exercises} /> : ''} */}
-          <MainTimer />
-          {/* <WebWorkerTimer /> */}
+          {/* <MainTimer /> */}
           <GetWorkout exerciseList={exercises} />
         </>
       );

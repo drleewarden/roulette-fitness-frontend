@@ -1,12 +1,19 @@
 /* components/RestaurantList/index.js */
-import React, {useContext, Fragment, useEffect, useState, createContext} from "react";
+import React, {
+  useContext,
+  Fragment,
+  useEffect,
+  useState,
+  createContext,
+} from "react";
 import Stopwatch from "../StopWatch";
+import MainTimer from "../webworker/mainTimer";
 
-export const GetWorkout =(exerciseList)=>{
- 
+export const GetWorkout = (exerciseList) => {
   return (
     <Fragment>
-        <Stopwatch exercises={exerciseList} />
+      <MainTimer exercises={exerciseList} />
+      {/* <Stopwatch exercises={exerciseList} /> */}
     </Fragment>
-  )
-}
+  );
+};

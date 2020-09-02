@@ -22,6 +22,7 @@ const StateProvider = ({ children }) => {
         return;
       case "ACTIVE_TIME":
         const timer = "asd"; // do something with the action
+        debugger;
 
         return timer;
       default:
