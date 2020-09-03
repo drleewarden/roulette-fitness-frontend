@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import * as workerTimers from "worker-timers";
 import { Progress } from "reactstrap";
 import { Exercise } from "../workouts/card";
+import { LargeCard } from "../components/workouts/largeCard";
 
 class MainTimer extends Component {
   constructor(props) {
     super(props);
-    const {exercises} = props;
+    const { exercises } = props;
     this.intervalId = null;
     this.state = {
       count: 0,
@@ -69,7 +70,7 @@ class MainTimer extends Component {
       this.setState({
         workout: false,
         rest: true,
-        exerciseNumber: this.state.exerciseNumber + 1
+        exerciseNumber: this.state.exerciseNumber + 1,
       });
       this.reset();
       this.rest();
@@ -97,10 +98,11 @@ class MainTimer extends Component {
     });
     workerTimers.clearInterval(this.intervalId);
   };
-  clusters (start,end ){
-    debugger
-    this.setState({ clusterArray: this.state.exercises.exerciseList.slice(start, end) });
-
+  clusters(start, end) {
+    debugger;
+    this.setState({
+      clusterArray: this.state.exercises.exerciseList.slice(start, end),
+    });
   }
   start = () => {
     //rest
@@ -109,7 +111,7 @@ class MainTimer extends Component {
     }
     // create clusters
 
-    this.clusters(0,3);
+    this.clusters(0, 3);
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
@@ -134,7 +136,18 @@ class MainTimer extends Component {
     );
     snd.play();
   }
-
+  activateExerciseImage() {
+    if (this.state.exercises) {
+      this.activeExercise = this.state.exercises.slice(0, 1);
+      let time = this.getMinutes();
+      return (
+        <LargeCard
+          exercise={this.state.exercises[this.getMinutes()]}
+          key={this.state.exercises[this.getMinutes()].unid}
+        />
+      );
+    }
+  }
   calculatePercent(percent, num) {
     return (percent * 100) / num;
   }
@@ -145,42 +158,83 @@ class MainTimer extends Component {
 
   render() {
     return (
-      <div className="App-bottom">
-        <section>
-          {/* <TimeHandler
+      <>
+        <div className="App-bottom">
+          <section>
+            {/* <TimeHandler
             cluster={this.state.cluster}
             timer={this.state.seconds}
             round={this.state.rounds}
           /> */}
-        </section>
-        <section className="App-left">
-          {this.state.startBtn && (
-            <button onClick={() => this.start()}>start</button>
-          )}
-          {!this.state.startBtn && (
-            <button onClick={() => this.pause()}>pause</button>
-          )}
-          progress: {this.state.percentage}
-          {this.state.rest && (
-            <Progress color="danger" value={this.state.percentage} />
-          )}
-          {this.state.workout && <Progress value={this.state.percentage} />}{" "}
-          <h2>
-            seconds: {this.state.seconds}, minutes:
-            {this.state.minutes}
-          </h2>
-          <p className="text-center">Total User Count: {this.state.count}</p>
-        </section>
-        <section>
-        <div className="cluster container">
-          {this.state.clusterArray.map((exercise) => {
-            return <Exercise exercise={exercise} key={exercise.unid} />;
-          })}
+          </section>
+          <section className="App-left">
+            {this.state.startBtn && (
+              <button onClick={() => this.start()}>start</button>
+            )}
+            {!this.state.startBtn && (
+              <button onClick={() => this.pause()}>pause</button>
+            )}
+            progress: {this.state.percentage}
+            {this.state.rest && (
+              <Progress color="danger" value={this.state.percentage} />
+            )}
+            {this.state.workout && <Progress value={this.state.percentage} />}{" "}
+            <h2>
+              seconds: {this.state.seconds}, minutes:
+              {this.state.minutes}
+            </h2>
+            <p className="text-center">Total User Count: {this.state.count}</p>
+          </section>
+          <section></section>
+          <section>
+            <div className="cluster container">
+              {this.state.clusterArray.map((exercise) => {
+                return <Exercise exercise={exercise} key={exercise.unid} />;
+              })}
+            </div>
+            {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
+          </section>
+          <h2>exercise: {this.state.exerciseNumber}</h2>
         </div>
-        {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
-        </section>
-        <h2>exercise: {this.state.exerciseNumber}</h2>
-      </div>
+
+        <style jsx>
+          {`
+            h1 {
+              font-family: "EB Garamond", serif;
+            }
+            .w-33 {
+              width: 33%;
+              padding: 15px;
+            }
+            .floating-text {
+              padding: 0;
+              border: 0;
+              position: relative;
+              background: rgba(0, 0, 0, 0.5);
+              display: flex;
+              color: white;
+            }
+            .cluster {
+              display: flex;
+            }
+            .big {
+              font-size: 100px;
+            }
+            body {
+              font-family: "EB Garamond", serif;
+            }
+            .timer.container {
+              text-align: center;
+            }
+            .notActive {
+              color: red;
+            }
+            .activity {
+              color: green;
+            }
+          `}
+        </style>
+      </>
     );
   }
 }

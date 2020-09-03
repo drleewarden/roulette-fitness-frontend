@@ -120,7 +120,7 @@ class Stopwatch extends React.Component {
       <Fragment>
         <section className="timer">
           <LocalState />
-    <h1>test: {this.state.timer}</h1>
+          <h1>test: {this.state.timer}</h1>
           <div className="floating-text">
             <div className="w-33">
               <h1>
