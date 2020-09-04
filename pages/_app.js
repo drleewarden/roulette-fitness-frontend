@@ -24,14 +24,11 @@ class MyApp extends App {
       <Container>
         <AppProvider>
           <Layout isAuthenticated={isAuthenticated} {...pageProps}>
-            
             <Component {...pageProps} />
           </Layout>
         </AppProvider>
         <style jsx global>
-          {
-          
-          `
+          {`
             a {
               color: white !important;
             }
@@ -44,6 +41,7 @@ class MyApp extends App {
             }
             .card {
               display: inline-block !important;
+              background-color: white;
             }
             .card-columns {
               column-count: 3;

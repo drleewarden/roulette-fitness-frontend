@@ -1,42 +1,33 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import Link from "next/link";
 
-export const LargeCard =(props)=> {
-  const {exercise} = props
+export const LargeCard = (props) => {
+  const { exercise } = props;
+  const height = "550px";
   return (
     <Fragment>
-      
+      <div className="large-card-container">
         <img
-          key={exercise.uid}
+          key={exercise.unid}
           top={true}
-          style={{ 
-            width: "100%",
-            position: 'absolute',
-            left: 0,
-            zIndex:-1
-          }}
+          className="large-card__img"
           src={`${exercise.image[0].url}`}
         />
-
-          <div style={{
-            padding: '20px',
-            border: '1px solid grey',
-            float:'right'
-            }}>
-            {/* <Title>dsfadfd</Title> */}
-            <h3>Title: {exercise.title}</h3>
-            <p>Description: {exercise.description}</p>
-            <Link
-              style={{
-                margin:'auto'
-              }}
-              as={`/restaurants/${exercise.uid}`}
-              href={`/restaurants?id=${exercise.uid}`}
-            >
-              <a className="btn btn-primary mx-auto w-100">View More</a>
-            </Link>
-          </div>
+      </div>
+      <style jsx>
+        {`
+          .large-card-container {
+            max-height: ${height};
+            overflow: hidden;
+          }
+          .large-card__img {
+            width: 100%;
+            left: 0;
+            top: 0;
+            z-index: -1;
+          }
+        `}
+      </style>
     </Fragment>
-  )
-}
- 
+  );
+};

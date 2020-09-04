@@ -1,87 +1,89 @@
 /* components/RestaurantList/index.js */
-import React, {useContext, Fragment, useState, createContext} from "react";
+import React, { useContext, Fragment, useState, createContext } from "react";
 import gql from "graphql-tag";
 import Link from "next/link";
-import {Exercise} from "./card";
+import { Exercise } from "./card";
 import { graphql } from "react-apollo";
-import { store } from '../store';
-import {AppContext} from '../Context/AppProvider'
+import { store } from "../store";
+import { AppContext } from "../Context/AppProvider";
 
-const shuffle =(a)=> {
+const shuffle = (a) => {
   for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
-}
+};
 
-const WorkoutList = (
-  { data: { exercises, error }}
-) => {
-  console.log('props:',exercises)
+const WorkoutList = ({ data: { exercises, error } }) => {
+  console.log("props:", exercises);
 
-const [exerciseList, setExerciseList] = useState({});
-      // setExerciseList(searchQuery)
-      // const newContext = React.createContext({workoutList :searchQuery  });
-      // const value = useContext(newContext);
-      // console.log('val',value); 
-const globalState = useContext(store);
-// dispatch state to store
-const { dispatch } = globalState;
+  const [exerciseList, setExerciseList] = useState({});
+  // setExerciseList(searchQuery)
+  // const newContext = React.createContext({workoutList :searchQuery  });
+  // const value = useContext(newContext);
+  // console.log('val',value);
+  const globalState = useContext(store);
+  // dispatch state to store
+  const { dispatch } = globalState;
   if (error) return "Error loading restaurants";
   //if restaurants are returned from the GraphQL query, run the filter query
   //and set equal to variable restaurantSearch
 
   if (exercises && exercises.length) {
     //searchQuery
-    const searchQuery = exercises.filter(query =>
-      query.title
-    );
+    const searchQuery = exercises.filter((query) => query.title);
     if (searchQuery.length != 0) {
       // this will return { color: 'black' }
-      dispatch(
-        { type: 'ACTIVE_WORKOUT',
-          payload: searchQuery
-        })
-    
+      dispatch({ type: "ACTIVE_WORKOUT", payload: searchQuery });
+
       return (
-        <AppContext.Consumer>{(context)=>{
-          const { getExerciseList } = context;          
-            return(
+        <AppContext.Consumer>
+          {(context) => {
+            const { getExerciseList } = context;
+            return (
               <div>
-          
-          <div className="container mx-auto">
-            {searchQuery.map(exercise => (
-                <Fragment>
-                  <Exercise exercise={exercise} key={exercise.unid} />
-                </Fragment>
-                      
-                    ))}
-          </div>
+                <div className="container mx-auto card-container">
+                  {searchQuery.map((exercise) => (
+                    <Fragment>
+                      <Exercise exercise={exercise} key={exercise.unid} />
+                    </Fragment>
+                  ))}
+                </div>
 
-              <style jsx global>
-                {`
-                  a {
-                    color: white;
-                  }
-                  a:link {
-                    text-decoration: none;
-                    color: white;
-                  }
-                  a:hover {
-                    color: white;
-                  }
-                  .card-columns {
-                    column-count: 3;
-                  }
-                `}
-              </style>
-            </div>
-            )
+                <style jsx global>
+                  {`
+                    a {
+                      color: white;
+                    }
+                    a:link {
+                      text-decoration: none;
+                      color: white;
+                    }
+                    a:hover {
+                      color: white;
+                    }
+                    .card-columns {
+                      column-count: 3;
+                    }
+                    .card-container {
+                      margin-top: 200px;
+                      display: flex;
+                      flex-wrap: wrap;
+                    }
+                    .card-wrapper {
+                      padding: 0 15px;
+                    }
+                    .card-image-container {
+                      overflow: hidden;
+                      height: 200px;
+                    }
+                  `}
+                </style>
+              </div>
+            );
           }}
-
         </AppContext.Consumer>
-        
       );
     } else {
       return <h1>No Restaurants Found</h1>;
@@ -114,6 +116,6 @@ const query = gql`
 
 export default graphql(query, {
   props: ({ data }) => ({
-    data
-  })
+    data,
+  }),
 })(WorkoutList);

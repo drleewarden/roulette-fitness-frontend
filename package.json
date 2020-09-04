@@ -23,6 +23,7 @@
     "node-sass": "^4.13.1",
     "react": "^16.8.0",
     "react-apollo": "^2.2.4",
+    "react-countdown-clock": "^2.7.0",
     "react-dom": "^16.6.1",
     "react-stripe-elements": "^2.0.1",
     "reactstrap": "^6.5.0",
@@ -30,6 +31,7 @@
     "strapi-sdk-javascript": "^0.3.0",
     "styled-components": "^5.1.0",
     "styled-jsx": "^3.2.5",
+    "worker-timers": "^6.0.21",
     "yarn": "^1.22.4"
   },
   "engines": {
