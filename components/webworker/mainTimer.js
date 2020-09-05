@@ -74,22 +74,29 @@ class MainTimer extends Component {
         exerciseClusterNumber: this.state.exerciseClusterNumber + 1,
         exerciseNumber: this.state.exerciseNumber + 1,
       });
+
       this.reset();
       this.rest();
+      
     }
+
+    if (this.state.exerciseClusterNumber === 3) {
+      this.setState({
+        exerciseClusterNumber: 0,
+        rounds: this.state.rounds + 1,
+      });
+    }
+
     this.setState({
       milliseconds: Math.floor(count % 1000),
       seconds: (Math.floor(count / 10) % 60) + 1,
     });
+
     this.setState({
       percentage: this.calculatePercent(Math.floor(count / 10), 60),
     });
 
-    if (this.state.minutes === 9) {
-      this.setState({
-        rounds: this.state.rounds + 1,
-      });
-    }
+    
   }
 
   init() {}
@@ -112,25 +119,19 @@ class MainTimer extends Component {
     }
     // create clusters
     // cluster 1
-    debugger;
     if (this.state.rounds < 3) {
       this.clusters(0, 3);
     }
-    if (this.state.rounds > 3 && this.state.round <= 6) {
+    if (this.state.rounds > 3 && this.state.rounds <= 6) {
       this.clusters(3, 6);
     }
-    if (this.state.rounds > 6 && this.state.round <= 9) {
+    if (this.state.rounds > 6 && this.state.rounds <= 9) {
       this.clusters(6, 9);
     }
-    if (this.state.rounds > 9 && this.state.round <= 12) {
+    if (this.state.rounds > 9 && this.state.rounds <= 12) {
       this.clusters(9, 12);
     }
-    if (this.state.exerciseClusterNumber <= 3) {
-      this.setState({
-        exerciseClusterNumber: 0,
-        round: this.state.round + 1,
-      });
-    }
+   
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
@@ -157,7 +158,7 @@ class MainTimer extends Component {
   }
   activateExerciseImage() {
     if (this.state.exercises) {
-      debugger;
+      
       console.log(this.state.exerciseClusterNumber);
       return (
         <LargeCard
