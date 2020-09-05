@@ -20,7 +20,7 @@ export const Exercise = (props) => {
   const { exercise } = props;
   return (
     <Fragment>
-      <div className="card-wrapper h-100 col-sm-12 col-md-6 col-lg-4">
+      <div className={"card-wrapper h-100 col-sm-12 col-md-6 col-lg-4" +exercise.index }>
         <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
           <div className="card-image-container">
             <CardImg

@@ -122,13 +122,13 @@ class MainTimer extends Component {
     if (this.state.rounds < 3) {
       this.clusters(0, 3);
     }
-    if (this.state.rounds > 3 && this.state.rounds <= 6) {
+    if (this.state.rounds > 2 && this.state.rounds <= 5) {
       this.clusters(3, 6);
     }
-    if (this.state.rounds > 6 && this.state.rounds <= 9) {
+    if (this.state.rounds > 5 && this.state.rounds <= 8) {
       this.clusters(6, 9);
     }
-    if (this.state.rounds > 9 && this.state.rounds <= 12) {
+    if (this.state.rounds > 8 && this.state.rounds <= 11) {
       this.clusters(9, 12);
     }
    
