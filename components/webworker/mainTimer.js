@@ -67,11 +67,11 @@ class MainTimer extends Component {
   }
 
   calculations(count) {
-    if (this.state.seconds === 5) {
+    if (this.state.seconds === 60) {
       this.setState({
         workout: false,
         rest: true,
-        exerciseClusterNumber: this.state.exerciseClusterNumber + 1 ,
+        exerciseClusterNumber: this.state.exerciseClusterNumber + 1,
         exerciseNumber: this.state.exerciseNumber + 1,
       });
       this.reset();
@@ -111,25 +111,25 @@ class MainTimer extends Component {
       workerTimers.clearInterval(this.intervalId);
     }
     // create clusters
-    // cluster 1 
-    debugger
-    if(this.state.rounds < 3){
+    // cluster 1
+    debugger;
+    if (this.state.rounds < 3) {
       this.clusters(0, 3);
     }
-    if(this.state.rounds > 3  && this.state.round <= 6){
+    if (this.state.rounds > 3 && this.state.round <= 6) {
       this.clusters(3, 6);
     }
-    if(this.state.rounds > 6  && this.state.round <= 9){
+    if (this.state.rounds > 6 && this.state.round <= 9) {
       this.clusters(6, 9);
     }
-    if(this.state.rounds > 9  && this.state.round <= 12){
+    if (this.state.rounds > 9 && this.state.round <= 12) {
       this.clusters(9, 12);
     }
-    if(this.state.exerciseClusterNumber <= 3) {
+    if (this.state.exerciseClusterNumber <= 3) {
       this.setState({
         exerciseClusterNumber: 0,
-        round: this.state.round + 1
-      })
+        round: this.state.round + 1,
+      });
     }
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
@@ -139,7 +139,6 @@ class MainTimer extends Component {
         startBtn: false,
         workout: true,
         rest: false,
-     
       });
       this.calculations(this.state.count);
     }, 100);
@@ -157,14 +156,18 @@ class MainTimer extends Component {
     snd.play();
   }
   activateExerciseImage() {
-    
     if (this.state.exercises) {
-      debugger
-      console.log(this.state.exerciseClusterNumber)
+      debugger;
+      console.log(this.state.exerciseClusterNumber);
       return (
         <LargeCard
-          exercise={this.state.exercises.exerciseList[this.state.exerciseClusterNumber]}
-          key={this.state.exercises.exerciseList[this.state.exerciseClusterNumber].unid}
+          exercise={
+            this.state.exercises.exerciseList[this.state.exerciseClusterNumber]
+          }
+          key={
+            this.state.exercises.exerciseList[this.state.exerciseClusterNumber]
+              .unid
+          }
         />
       );
     }
@@ -176,17 +179,15 @@ class MainTimer extends Component {
   componentDidMount = () => {
     // this.worker = new WebWorker(worker);
   };
-clusterCards(){
-  return this.state.clusterArray.map((exercise) => {
-
-    return <Exercise exercise={exercise} key={exercise.unid} />
-  })
-}
+  clusterCards() {
+    return this.state.clusterArray.map((exercise) => {
+      return <Exercise exercise={exercise} key={exercise.unid} />;
+    });
+  }
   render() {
     return (
       <>
         <div className="App-bottom">
-         
           <section className="App-left">
             {this.state.startBtn && (
               <button onClick={() => this.start()}>start</button>
@@ -205,16 +206,9 @@ clusterCards(){
             </h2>
             <p className="text-center">Total User Count: {this.state.count}</p>
           </section>
+          <section>{this.activateExerciseImage()}</section>
           <section>
-          {this.activateExerciseImage()}
-
-          </section>
-          <section>
-            <div className="cluster container">
-              {
-                this.clusterCards()
-              }
-            </div>
+            <div className="cluster container">{this.clusterCards()}</div>
             {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
           </section>
           <h2>exercise: {this.state.exerciseNumber}</h2>
