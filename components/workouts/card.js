@@ -18,20 +18,19 @@ import { CardText, CardTitle, Col, Row } from "reactstrap";
 
 export const Exercise = (props) => {
   const { exercise, active } = props;
+  console.log("test", active);
   return (
     <Fragment>
       <div
-        className={
-          "card-wrapper h-100 col-sm-12 col-md-6 col-lg-4 " + active
-            ? "card-active"
-            : ""
-        }
+        className={`${
+          active ? "card-active" : ""
+        }  card-wrapper h-100 col-sm-12 col-md-6 col-lg-6`}
       >
         <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
           <div className="card-image-container">
             <CardImg
               top={true}
-              style={{ height: 250 }}
+              style={{ maxHeight: 350 }}
               src={`${exercise.image[0].url}`}
             />
           </div>
@@ -48,11 +47,15 @@ export const Exercise = (props) => {
               <a className="btn btn-primary mx-auto w-100">View More</a>
             </Link>
           </CardBody>
-          {/* <div className="card-footer">
-                 
-                </div> */}
         </Card>
       </div>
+      <style jsx>
+        {`
+          .card-active {
+            display: none;
+          }
+        `}
+      </style>
     </Fragment>
   );
 };

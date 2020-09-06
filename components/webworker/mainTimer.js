@@ -3,6 +3,7 @@ import * as workerTimers from "worker-timers";
 import { Progress } from "reactstrap";
 import { Exercise } from "../workouts/card";
 import { LargeCard } from "../workouts/largeCard";
+import { PlayIcon, XCircleIcon } from "@primer/octicons-react";
 
 class MainTimer extends Component {
   constructor(props) {
@@ -193,19 +194,24 @@ class MainTimer extends Component {
   render() {
     return (
       <>
-        <div className="App-bottom">
-          <section className="App-left">
+        <div className="App-calendar">
+          {this.state.workout && <Progress value={this.state.percentage} />}{" "}
+          <section className="App-timer">
             {this.state.startBtn && (
-              <button onClick={() => this.start()}>start</button>
+              <button className="blank-btn" onClick={() => this.start()}>
+                <PlayIcon size={165} />
+              </button>
             )}
             {!this.state.startBtn && (
-              <button onClick={() => this.pause()}>pause</button>
+              <button className="blank-btn" onClick={() => this.pause()}>
+                <XCircleIcon size={165} />
+              </button>
             )}
-            progress: {this.state.percentage}
+            {/* progress: {this.state.percentage} */}
             {this.state.rest && (
               <Progress color="danger" value={this.state.percentage} />
             )}
-            {this.state.workout && <Progress value={this.state.percentage} />}{" "}
+
             <h2>
               seconds: {this.state.seconds}, minutes:
               {this.state.minutes}
@@ -222,6 +228,30 @@ class MainTimer extends Component {
 
         <style jsx>
           {`
+            .App-calendar {
+              text-align: center;
+              position: absolute;
+              text-align: center;
+              margin: 0 auto;
+              width: 100%;
+            }
+            .App-timer {
+              position: absolute;
+              text-align: center;
+              margin: 50px auto;
+              width: 100%;
+            }
+            .progress-bar {
+              background-color: #ff5722;
+            }
+            .progress {
+              border-radius: 0px;
+            }
+            .blank-btn {
+              color: #2c2c2c;
+              background: transparent;
+              border: 0;
+            }
             h1 {
               font-family: "EB Garamond", serif;
             }
