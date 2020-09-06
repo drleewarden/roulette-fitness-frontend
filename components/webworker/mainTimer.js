@@ -77,7 +77,6 @@ class MainTimer extends Component {
 
       this.reset();
       this.rest();
-      
     }
 
     if (this.state.exerciseClusterNumber === 3) {
@@ -95,8 +94,6 @@ class MainTimer extends Component {
     this.setState({
       percentage: this.calculatePercent(Math.floor(count / 10), 60),
     });
-
-    
   }
 
   init() {}
@@ -131,7 +128,7 @@ class MainTimer extends Component {
     if (this.state.rounds > 8 && this.state.rounds <= 11) {
       this.clusters(9, 12);
     }
-   
+
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
       // do something many times
@@ -158,7 +155,6 @@ class MainTimer extends Component {
   }
   activateExerciseImage() {
     if (this.state.exercises) {
-      
       console.log(this.state.exerciseClusterNumber);
       return (
         <LargeCard
@@ -181,8 +177,17 @@ class MainTimer extends Component {
     // this.worker = new WebWorker(worker);
   };
   clusterCards() {
-    return this.state.clusterArray.map((exercise) => {
-      return <Exercise exercise={exercise} key={exercise.unid} />;
+    return this.state.clusterArray.map((exercise, ind) => {
+      console.log("current:", this.state.exerciseClusterNumber);
+
+      return (
+        <Exercise
+          inde={ind}
+          active={this.state.exerciseClusterNumber === ind ? true : false}
+          exercise={exercise}
+          key={exercise.unid}
+        />
+      );
     });
   }
   render() {

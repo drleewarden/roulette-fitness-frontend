@@ -17,10 +17,16 @@ import {
 import { CardText, CardTitle, Col, Row } from "reactstrap";
 
 export const Exercise = (props) => {
-  const { exercise } = props;
+  const { exercise, active } = props;
   return (
     <Fragment>
-      <div className={"card-wrapper h-100 col-sm-12 col-md-6 col-lg-4" +exercise.index }>
+      <div
+        className={
+          "card-wrapper h-100 col-sm-12 col-md-6 col-lg-4 " + active
+            ? "card-active"
+            : ""
+        }
+      >
         <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
           <div className="card-image-container">
             <CardImg
