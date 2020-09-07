@@ -27,7 +27,6 @@ class MainTimer extends Component {
       startBtn: true,
     };
     this.init();
-    console.log(this.exercises);
   }
 
   rest() {
@@ -68,7 +67,7 @@ class MainTimer extends Component {
   }
 
   calculations(count) {
-    if (this.state.seconds === 60) {
+    if (this.state.seconds === 45) {
       this.setState({
         workout: false,
         rest: true,
@@ -93,12 +92,19 @@ class MainTimer extends Component {
     });
 
     this.setState({
-      percentage: this.calculatePercent(Math.floor(count / 10), 60),
+      percentage: this.calculatePercent(Math.floor(count / 10), 45),
     });
   }
 
-  init() {}
-
+  init() {
+    const reorder = this.state.exercises.exerciseList.sort(this.randomOrder);
+    this.setState({
+      exercises: reorder,
+    });
+  }
+  randomOrder(a, b) {
+    return 0.5 - Math.random();
+  }
   pause = () => {
     this.setState({
       startBtn: true,
@@ -110,6 +116,7 @@ class MainTimer extends Component {
       clusterArray: this.state.exercises.exerciseList.slice(start, end),
     });
   }
+
   start = () => {
     //rest
     if (this.intervalId !== null) {
@@ -196,6 +203,10 @@ class MainTimer extends Component {
       <>
         <div className="App-calendar">
           {this.state.workout && <Progress value={this.state.percentage} />}{" "}
+          {/* progress: {this.state.percentage} */}
+          {this.state.rest && (
+            <Progress color="danger" value={this.state.percentage} />
+          )}
           <section className="App-timer">
             {this.state.startBtn && (
               <button className="blank-btn" onClick={() => this.start()}>
@@ -206,10 +217,6 @@ class MainTimer extends Component {
               <button className="blank-btn" onClick={() => this.pause()}>
                 <XCircleIcon size={165} />
               </button>
-            )}
-            {/* progress: {this.state.percentage} */}
-            {this.state.rest && (
-              <Progress color="danger" value={this.state.percentage} />
             )}
 
             <h2>
