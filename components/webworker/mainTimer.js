@@ -10,6 +10,7 @@ class MainTimer extends Component {
     super(props);
     const { exercises } = props;
     this.intervalId = null;
+    this.buttonSize = null;
     this.state = {
       count: 0,
       exerciseNumber: 0,
@@ -95,8 +96,18 @@ class MainTimer extends Component {
       percentage: this.calculatePercent(Math.floor(count / 10), 45),
     });
   }
-
+  checkWidowSize(x) {
+    if (x.matches) {
+      // If media query matches
+      this.buttonSize = 65;
+    } else {
+      this.buttonSize = 166;
+    }
+  }
   init() {
+    const screenWidth = window.matchMedia("(max-width: 678px)");
+    this.checkWidowSize(screenWidth); // Call listener function at run time
+    screenWidth.addListener(this.checkWidowSize); // Attach listener function on state changes
     const reorder = this.state.exercises.exerciseList.sort(this.randomOrder);
     this.setState({
       exercises: reorder,
@@ -210,12 +221,12 @@ class MainTimer extends Component {
           <section className="App-timer">
             {this.state.startBtn && (
               <button className="blank-btn" onClick={() => this.start()}>
-                <PlayIcon size={165} />
+                <PlayIcon size={this.buttonSize} />
               </button>
             )}
             {!this.state.startBtn && (
               <button className="blank-btn" onClick={() => this.pause()}>
-                <XCircleIcon size={165} />
+                <XCircleIcon size={this.buttonSize} />
               </button>
             )}
 
@@ -224,6 +235,13 @@ class MainTimer extends Component {
               {this.state.minutes}
             </h2>
             <p className="text-center">Total User Count: {this.state.count}</p>
+            <h2>
+              {
+                this.state.exercises.exerciseList[
+                  this.state.exerciseClusterNumber
+                ].title
+              }
+            </h2>
           </section>
           <section>{this.activateExerciseImage()}</section>
           <section>
@@ -247,6 +265,7 @@ class MainTimer extends Component {
               text-align: center;
               margin: 50px auto;
               width: 100%;
+              background-color: rgba(255, 255, 255, 0.6);
             }
             .progress-bar {
               background-color: #ff5722;
