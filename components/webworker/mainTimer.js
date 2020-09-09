@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import * as workerTimers from "worker-timers";
 import { Progress } from "reactstrap";
 import { Exercise } from "../workouts/card";
@@ -9,6 +9,9 @@ class MainTimer extends Component {
   constructor(props) {
     super(props);
     const { exercises } = props;
+    const randomList = exercises.exerciseList.sort(this.randomOrder);
+    const firstCluster = randomList.slice(0, 3);
+
     this.intervalId = null;
     this.buttonSize = null;
     this.state = {
@@ -20,16 +23,17 @@ class MainTimer extends Component {
       minutes: 0,
       rounds: 0,
       cluster: 0,
-      exercises: exercises,
-      clusterArray: [],
+      exercises: randomList,
+      clusterArray: firstCluster,
       percentage: 0,
       workout: false,
       rest: false,
       startBtn: true,
+      test: 0,
     };
-    this.init();
+    this.init(); //start
   }
-
+  // rest period of 20 seconds
   rest() {
     this.beep();
     this.reset();
@@ -57,7 +61,7 @@ class MainTimer extends Component {
       }
     }, 100);
   }
-
+  // reset state of the timer
   reset() {
     this.setState({
       count: 0,
@@ -85,6 +89,7 @@ class MainTimer extends Component {
         exerciseClusterNumber: 0,
         rounds: this.state.rounds + 1,
       });
+      this.progressionOfNewCluster();
     }
 
     this.setState({
@@ -96,6 +101,7 @@ class MainTimer extends Component {
       percentage: this.calculatePercent(Math.floor(count / 10), 45),
     });
   }
+  // change button size
   checkWidowSize(x) {
     if (x.matches) {
       // If media query matches
@@ -104,30 +110,55 @@ class MainTimer extends Component {
       this.buttonSize = 166;
     }
   }
+
   init() {
+    debugger;
     const screenWidth = window.matchMedia("(max-width: 678px)");
     this.checkWidowSize(screenWidth); // Call listener function at run time
     screenWidth.addListener(this.checkWidowSize); // Attach listener function on state changes
-    const reorder = this.state.exercises.exerciseList.sort(this.randomOrder);
-    this.setState({
-      exercises: reorder,
-    });
   }
+
   randomOrder(a, b) {
     return 0.5 - Math.random();
   }
+  // pause interval
   pause = () => {
     this.setState({
       startBtn: true,
     });
     workerTimers.clearInterval(this.intervalId);
   };
+
   clusters(start, end) {
     this.setState({
       clusterArray: this.state.exercises.exerciseList.slice(start, end),
     });
+    console.log("array:", this.state.exercises.exerciseList.slice(start, end));
   }
 
+  progressionOfNewCluster() {
+    if (this.state.rounds < 3) {
+      console.log("less the 3 was hit ");
+      this.setState({ test: 1 });
+      this.clusters(0, 3);
+    }
+
+    if (this.state.rounds > 3 && this.state.rounds <= 6) {
+      console.log("more the 3 was hit ");
+      this.setState({ test: 2 });
+      this.clusters(3, 6);
+    }
+
+    if (this.state.rounds > 6 && this.state.rounds <= 9) {
+      this.setState({ test: 3 });
+      this.clusters(6, 9);
+    }
+
+    if (this.state.rounds > 9 && this.state.rounds <= 12) {
+      this.setState({ test: 4 });
+      this.clusters(9, 12);
+    }
+  }
   start = () => {
     //rest
     if (this.intervalId !== null) {
@@ -135,18 +166,6 @@ class MainTimer extends Component {
     }
     // create clusters
     // cluster 1
-    if (this.state.rounds < 3) {
-      this.clusters(0, 3);
-    }
-    if (this.state.rounds > 2 && this.state.rounds <= 5) {
-      this.clusters(3, 6);
-    }
-    if (this.state.rounds > 5 && this.state.rounds <= 8) {
-      this.clusters(6, 9);
-    }
-    if (this.state.rounds > 8 && this.state.rounds <= 11) {
-      this.clusters(9, 12);
-    }
 
     this.beepRest();
     this.intervalId = workerTimers.setInterval(() => {
@@ -174,16 +193,11 @@ class MainTimer extends Component {
   }
   activateExerciseImage() {
     if (this.state.exercises) {
-      console.log(this.state.exerciseClusterNumber);
+      console.log("cluster array", this.state);
       return (
         <LargeCard
-          exercise={
-            this.state.exercises.exerciseList[this.state.exerciseClusterNumber]
-          }
-          key={
-            this.state.exercises.exerciseList[this.state.exerciseClusterNumber]
-              .unid
-          }
+          exercise={this.state.clusterArray[this.state.exerciseClusterNumber]}
+          key={this.state.clusterArray[this.state.exerciseClusterNumber].unid}
         />
       );
     }
@@ -196,6 +210,9 @@ class MainTimer extends Component {
     // this.worker = new WebWorker(worker);
   };
   clusterCards() {
+    if (!this.state.clusterArray) {
+      return;
+    }
     return this.state.clusterArray.map((exercise, ind) => {
       console.log("current:", this.state.exerciseClusterNumber);
 
@@ -210,8 +227,9 @@ class MainTimer extends Component {
     });
   }
   render() {
+    debugger;
     return (
-      <>
+      <Fragment>
         <div className="App-calendar">
           {this.state.workout && <Progress value={this.state.percentage} />}{" "}
           {/* progress: {this.state.percentage} */}
@@ -229,18 +247,17 @@ class MainTimer extends Component {
                 <XCircleIcon size={this.buttonSize} />
               </button>
             )}
-
+            <h1>Rounds:{this.state.rounds}</h1>
+            <h1>test:{this.state.test}</h1>
             <h2>
               seconds: {this.state.seconds}, minutes:
               {this.state.minutes}
             </h2>
-            <p className="text-center">Total User Count: {this.state.count}</p>
+            <p className="text-center">
+              Total User Count: {this.state.count && this.state.count}
+            </p>
             <h2>
-              {
-                this.state.exercises.exerciseList[
-                  this.state.exerciseClusterNumber
-                ].title
-              }
+              {this.state.exercises[this.state.exerciseClusterNumber].title}
             </h2>
           </section>
           <section>{this.activateExerciseImage()}</section>
@@ -313,7 +330,7 @@ class MainTimer extends Component {
             }
           `}
         </style>
-      </>
+      </Fragment>
     );
   }
 }
