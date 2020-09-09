@@ -24,7 +24,7 @@ export const Exercise = (props) => {
       <div
         className={`${
           active ? "card-active" : ""
-        }  card-wrapper h-100 col-sm-12 col-md-6 col-lg-6`}
+        }  card-wrapper h-100 col-6 col-md-6 col-lg-6`}
       >
         <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
           <div className="card-image-container">

@@ -112,7 +112,6 @@ class MainTimer extends Component {
   }
 
   init() {
-    debugger;
     const screenWidth = window.matchMedia("(max-width: 678px)");
     this.checkWidowSize(screenWidth); // Call listener function at run time
     screenWidth.addListener(this.checkWidowSize); // Attach listener function on state changes
@@ -227,7 +226,6 @@ class MainTimer extends Component {
     });
   }
   render() {
-    debugger;
     return (
       <Fragment>
         <div className="App-calendar">
@@ -262,7 +260,9 @@ class MainTimer extends Component {
           </section>
           <section>{this.activateExerciseImage()}</section>
           <section>
-            <div className="cluster container">{this.clusterCards()}</div>
+            <div className={"cluster row containerX"}>
+              {this.clusterCards()}
+            </div>
             {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
           </section>
           <h2>exercise: {this.state.exerciseNumber}</h2>
@@ -325,6 +325,7 @@ class MainTimer extends Component {
             .notActive {
               color: red;
             }
+
             .activity {
               color: green;
             }
