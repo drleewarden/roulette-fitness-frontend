@@ -72,7 +72,7 @@ class MainTimer extends Component {
   }
 
   calculations(count) {
-    if (this.state.seconds === 45) {
+    if (this.state.seconds === 5) {
       this.setState({
         workout: false,
         rest: true,
@@ -107,11 +107,12 @@ class MainTimer extends Component {
       // If media query matches
       this.buttonSize = 65;
     } else {
-      this.buttonSize = 166;
+      this.buttonSize = 200;
     }
   }
 
   init() {
+    debugger;
     const screenWidth = window.matchMedia("(max-width: 678px)");
     this.checkWidowSize(screenWidth); // Call listener function at run time
     screenWidth.addListener(this.checkWidowSize); // Attach listener function on state changes
@@ -130,9 +131,8 @@ class MainTimer extends Component {
 
   clusters(start, end) {
     this.setState({
-      clusterArray: this.state.exercises.exerciseList.slice(start, end),
+      clusterArray: this.state.exercises.slice(start, end),
     });
-    console.log("array:", this.state.exercises.exerciseList.slice(start, end));
   }
 
   progressionOfNewCluster() {
@@ -193,12 +193,16 @@ class MainTimer extends Component {
   activateExerciseImage() {
     if (this.state.exercises) {
       console.log("cluster array", this.state);
-      return (
-        <LargeCard
-          exercise={this.state.clusterArray[this.state.exerciseClusterNumber]}
-          key={this.state.clusterArray[this.state.exerciseClusterNumber].unid}
-        />
-      );
+      if (
+        this.state.clusterArray[this.state.exerciseClusterNumber] != undefined
+      ) {
+        return (
+          <LargeCard
+            exercise={this.state.clusterArray[this.state.exerciseClusterNumber]}
+            key={this.state.clusterArray[this.state.exerciseClusterNumber].unid}
+          />
+        );
+      }
     }
   }
   calculatePercent(percent, num) {
@@ -229,12 +233,15 @@ class MainTimer extends Component {
     return (
       <Fragment>
         <div className="App-calendar">
-          {this.state.workout && <Progress value={this.state.percentage} />}{" "}
-          {/* progress: {this.state.percentage} */}
-          {this.state.rest && (
-            <Progress color="danger" value={this.state.percentage} />
-          )}
           <section className="App-timer">
+            <h4>Rounds:{this.state.rounds}</h4>
+            <h5>
+              seconds: {this.state.seconds}, minutes:
+              {this.state.minutes}
+            </h5>
+            <h2>
+              {this.state.exercises[this.state.exerciseClusterNumber].title}
+            </h2>
             {this.state.startBtn && (
               <button className="blank-btn" onClick={() => this.start()}>
                 <PlayIcon size={this.buttonSize} />
@@ -245,21 +252,13 @@ class MainTimer extends Component {
                 <XCircleIcon size={this.buttonSize} />
               </button>
             )}
-            <h1>Rounds:{this.state.rounds}</h1>
-            <h1>test:{this.state.test}</h1>
-            <h2>
-              seconds: {this.state.seconds}, minutes:
-              {this.state.minutes}
-            </h2>
-            <p className="text-center">
-              Total User Count: {this.state.count && this.state.count}
-            </p>
-            <h2>
-              {this.state.exercises[this.state.exerciseClusterNumber].title}
-            </h2>
+            {this.state.workout && <Progress value={this.state.percentage} />}{" "}
+            {this.state.rest && (
+              <Progress color="danger" value={this.state.percentage} />
+            )}
           </section>
           <section>{this.activateExerciseImage()}</section>
-          <section>
+          <section className="mt-5">
             <div className={"cluster row containerX"}>
               {this.clusterCards()}
             </div>
@@ -290,10 +289,19 @@ class MainTimer extends Component {
             .progress {
               border-radius: 0px;
             }
+
             .blank-btn {
               color: #2c2c2c;
-              background: transparent;
+              background: white;
+              border-radius: 100px;
               border: 0;
+              padding: 0;
+              margin-top: 40px;
+            }
+            @media (min-width: 992px) {
+              .blank-btn {
+                background: transparent;
+              }
             }
             h1 {
               font-family: "EB Garamond", serif;
