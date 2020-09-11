@@ -21,34 +21,32 @@ export const Exercise = (props) => {
   console.log("test", active);
   return (
     <Fragment>
-      <div
-        className={`${
-          active ? "card-active" : ""
-        }  card-wrapper h-100 col-6 col-md-6 col-lg-6`}
-      >
-        <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
-          <div className="card-image-container">
-            <CardImg
-              top={true}
-              style={{ maxHeight: 350 }}
-              src={`${exercise.image[0].url}`}
-            />
-          </div>
+      {!active && (
+        <div className="card-wrapper h-100 col-6 col-md-6 col-lg-6">
+          <Card style={{ margin: "0 0px 20px", border: 0 }} key={exercise.unid}>
+            <div className="card-image-container">
+              <CardImg
+                top={true}
+                style={{ maxHeight: 350 }}
+                src={`${exercise.image[0].url}`}
+              />
+            </div>
 
-          <CardBody style={{ border: "1px solid grey" }}>
-            {/* <Title>dsfadfd</Title> */}
-            <CardTitle>{exercise.title}</CardTitle>
-            <CardText>{exercise.description}</CardText>
-            <Link
-              style={{ margin: "auto" }}
-              as={`/restaurants/${exercise.unid}`}
-              href={`/restaurants?id=${exercise.unid}`}
-            >
-              <a className="btn btn-primary mx-auto w-100">View More</a>
-            </Link>
-          </CardBody>
-        </Card>
-      </div>
+            <CardBody style={{ border: "1px solid grey" }}>
+              {/* <Title>dsfadfd</Title> */}
+              <CardTitle>{exercise.title}</CardTitle>
+              <Link
+                style={{ margin: "auto" }}
+                as={`/restaurants/${exercise.unid}`}
+                href={`/restaurants?id=${exercise.unid}`}
+              >
+                <a className="btn btn-primary mx-auto w-100">View More</a>
+              </Link>
+            </CardBody>
+          </Card>
+        </div>
+      )}
+
       <style jsx>
         {`
           .card-active {

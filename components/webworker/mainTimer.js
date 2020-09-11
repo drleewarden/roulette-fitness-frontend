@@ -72,7 +72,7 @@ class MainTimer extends Component {
   }
 
   calculations(count) {
-    if (this.state.seconds === 5) {
+    if (this.state.seconds === 45) {
       this.setState({
         workout: false,
         rest: true,
@@ -234,31 +234,28 @@ class MainTimer extends Component {
       <Fragment>
         <div className="App-calendar">
           <section className="App-timer">
-            <h4>Rounds:{this.state.rounds}</h4>
-            <h5>
-              seconds: {this.state.seconds}, minutes:
-              {this.state.minutes}
-            </h5>
             <h2>
               {this.state.exercises[this.state.exerciseClusterNumber].title}
             </h2>
-            {this.state.startBtn && (
-              <button className="blank-btn" onClick={() => this.start()}>
-                <PlayIcon size={this.buttonSize} />
-              </button>
-            )}
-            {!this.state.startBtn && (
-              <button className="blank-btn" onClick={() => this.pause()}>
-                <XCircleIcon size={this.buttonSize} />
-              </button>
-            )}
-            {this.state.workout && <Progress value={this.state.percentage} />}{" "}
-            {this.state.rest && (
-              <Progress color="danger" value={this.state.percentage} />
-            )}
           </section>
           <section>{this.activateExerciseImage()}</section>
-          <section className="mt-5">
+          {this.state.workout && (
+            <Progress value={this.state.percentage} />
+          )}{" "}
+          {this.state.rest && (
+            <Progress color="danger" value={this.state.percentage} />
+          )}
+          {this.state.startBtn && (
+            <button className="blank-btn" onClick={() => this.start()}>
+              <PlayIcon size={this.buttonSize} />
+            </button>
+          )}
+          {!this.state.startBtn && (
+            <button className="blank-btn" onClick={() => this.pause()}>
+              <XCircleIcon size={this.buttonSize} />
+            </button>
+          )}
+          <section className="mt-2">
             <div className={"cluster row containerX"}>
               {this.clusterCards()}
             </div>
@@ -279,7 +276,7 @@ class MainTimer extends Component {
             .App-timer {
               position: absolute;
               text-align: center;
-              margin: 50px auto;
+              margin: 0 auto;
               width: 100%;
               background-color: rgba(255, 255, 255, 0.6);
             }
@@ -296,7 +293,7 @@ class MainTimer extends Component {
               border-radius: 100px;
               border: 0;
               padding: 0;
-              margin-top: 40px;
+              margin-top: -50px;
             }
             @media (min-width: 992px) {
               .blank-btn {
