@@ -112,7 +112,6 @@ class MainTimer extends Component {
   }
 
   init() {
-    debugger;
     const screenWidth = window.matchMedia("(max-width: 678px)");
     this.checkWidowSize(screenWidth); // Call listener function at run time
     screenWidth.addListener(this.checkWidowSize); // Attach listener function on state changes
@@ -136,24 +135,24 @@ class MainTimer extends Component {
   }
 
   progressionOfNewCluster() {
-    if (this.state.rounds < 3) {
+    if (this.state.rounds <= 2) {
       console.log("less the 3 was hit ");
       this.setState({ test: 1 });
       this.clusters(0, 3);
     }
 
-    if (this.state.rounds > 3 && this.state.rounds <= 6) {
+    if (this.state.rounds > 2 && this.state.rounds <= 5) {
       console.log("more the 3 was hit ");
       this.setState({ test: 2 });
       this.clusters(3, 6);
     }
 
-    if (this.state.rounds > 6 && this.state.rounds <= 9) {
+    if (this.state.rounds > 5 && this.state.rounds <= 8) {
       this.setState({ test: 3 });
       this.clusters(6, 9);
     }
 
-    if (this.state.rounds > 9 && this.state.rounds <= 12) {
+    if (this.state.rounds > 8 && this.state.rounds <= 11) {
       this.setState({ test: 4 });
       this.clusters(9, 12);
     }
@@ -295,11 +294,7 @@ class MainTimer extends Component {
               padding: 0;
               margin-top: -50px;
             }
-            @media (min-width: 992px) {
-              .blank-btn {
-                background: transparent;
-              }
-            }
+
             h1 {
               font-family: "EB Garamond", serif;
             }
@@ -333,6 +328,21 @@ class MainTimer extends Component {
 
             .activity {
               color: green;
+            }
+            @media (min-width: 992px) {
+              .blank-btn {
+                background: transparent;
+                position: absolute;
+                top: 200px;
+                left: auto;
+                margin: 0 -100px;
+              }
+              .App-calendar {
+                position: relative;
+                text-align: center;
+                margin: 0 auto;
+                width: 80%;
+              }
             }
           `}
         </style>

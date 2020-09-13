@@ -1,38 +1,41 @@
 // Fonts
-h1{ font-size: 80px;}
+h1 {
+  font-size: 80px;
+}
 a {
-    color: white !important;
+  color: white !important;
 }
 
 a:link {
-    text-decoration: none !important;
-    color: white !important;
+  text-decoration: none !important;
+  color: white !important;
 }
-
+body {
+  display: none;
+}
 a:hover {
-    color: white;
+  color: white;
 }
 
 .card {
-    display: inline-block !important;
-    a{
-        background-color: #4e4e4e;
-        border-color: #005cbf;
-    }
+  display: inline-block !important;
+  a {
+    background-color: #4e4e4e;
+    border-color: #005cbf;
+  }
 }
 .card-columns {
-    column-count: 3;
+  column-count: 3;
 }
-.timer{
-    h1{
-        font-size: 20 rem;
-    }
+.timer {
+  h1 {
+    font-size: 20 rem;
+  }
 }
-body{
-    display: none;
+body {
+  display: none;
 }
 
-          
 // // @import url('https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700|Roboto:400,500display&=swap');
 
 // // Bootstrap 4 required
@@ -47,7 +50,7 @@ body{
 // @import '~bootstrap/scss/root';
 // @import '~bootstrap/scss/reboot';
 // @import '~bootstrap/scss/type';
-// @import '~bootstrap/scss/images'; 
+// @import '~bootstrap/scss/images';
 // //  @import "~bootstrap/scss/code";
 // @import '~bootstrap/scss/grid';
 // //  @import "~bootstrap/scss/tables";
@@ -78,7 +81,7 @@ body{
 // //  @import "~bootstrap/scss/spinners";
 // //  @import "~bootstrap/scss/print";
 
-// // Extended Bootstrap 
+// // Extended Bootstrap
 // @import 'vendor/bootstrap/typography';
 // @import 'vendor/bootstrap/tooltips';
 
@@ -101,4 +104,3 @@ body{
 // @import 'copy/index';
 // @import 'forms/index';
 // @import 'layout/index';
-

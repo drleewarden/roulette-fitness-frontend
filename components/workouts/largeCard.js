@@ -26,6 +26,9 @@ export const LargeCard = (props) => {
             top: 0;
             z-index: -1;
           }
+          @media (min-width: 992px) {
+            border-radius: 5px;
+          }
         `}
       </style>
     </Fragment>
