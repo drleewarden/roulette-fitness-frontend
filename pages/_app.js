@@ -7,7 +7,6 @@ import defaultPage from "../hocs/defaultPage";
 import { compose } from "recompose";
 import App, { Container } from "next/app";
 import React from "react";
-import "../assets/styles/app.scss";
 
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {

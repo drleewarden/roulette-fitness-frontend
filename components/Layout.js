@@ -36,6 +36,10 @@ class Layout extends React.Component {
             content="initial-scale=1.0, width=device-width"
           />
           <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            rel="stylesheet"
+          ></link>
+          <link
             href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap"
             rel="stylesheet"
           ></link>
