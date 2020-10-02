@@ -42,7 +42,6 @@ export const Exercise = (props) => {
   const desktopVersion = () => {
     return (
       <div className="card-wrapper h-100 col-6 col-md-6 col-lg-4">
-        <DisplayNone>dsfadfd</DisplayNone>
         <Card
           style={{
             margin: "0 0px 20px",
