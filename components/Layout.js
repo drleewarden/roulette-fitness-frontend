@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { unsetToken } from "../lib/auth";
 import { Container, Nav, NavItem } from "reactstrap";
-import { StateProvider } from "./store.js";
+// import { StateProvider } from "./store.js";
 
 import Btn from "../components/Btn";
 // import Workouts from "./workouts/index"
@@ -95,7 +95,9 @@ class Layout extends React.Component {
             )}
           </Nav>
         </header>
-        <StateProvider>{children}</StateProvider>
+        {/* <StateProvider> */}
+        {children}
+        {/* </StateProvider> */}
       </div>
     );
   }

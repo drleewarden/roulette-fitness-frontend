@@ -8,10 +8,6 @@ const store = createContext(initialState);
 const { Provider } = store;
 
 const StateProvider = ({ children }) => {
-  //  const [exerciseListX, setExerciseListX] = useState({});
-  // const jump =()=>{
-  //   setExerciseListX({t:'dsf'})
-  // }
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ACTIVE_WORKOUT":
