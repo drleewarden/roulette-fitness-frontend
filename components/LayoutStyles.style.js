@@ -11,5 +11,10 @@ export const Wrapper = styled.section`
 
 export const InfoCardStyle = styled.article`
   padding: 4em;
-  background-color: white;
+  background-color: #e7cfcf;
+  position: absolute;
+  top: 40%;
+  left: 3%;
+  border-radius: 25px;
+  box-shadow: 2px 0px 20px black;
 `;
