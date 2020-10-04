@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components";
 // Create a Title component that'll render an <h1> tag with some styles
 export const Cat = styled.h2`
   font-size: 3rem;
@@ -7,4 +7,9 @@ export const Cat = styled.h2`
 // Create a Wrapper component that'll render a <section> tag with some styles
 export const Wrapper = styled.section`
   padding: 4em;
+`;
+
+export const InfoCardStyle = styled.article`
+  padding: 4em;
+  background-color: white;
 `;

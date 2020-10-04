@@ -4,6 +4,7 @@ import RestaurantList from "../components/RestaurantList";
 import React, { Fragment } from "react";
 import defaultPage from "../hocs/defaultPage";
 import { Video } from "../components/workouts/video";
+import { InfoCard } from "../components/workouts/infoCardComponent";
 import {
   Alert,
   Button,
@@ -34,7 +35,7 @@ class Index extends React.Component {
       <div className="container-fluid">
         <Row>
           <div
-            style={{ position: "absolute" }}
+            style={{ position: "absolute", zIndex: 99 }}
             className="search-container col"
           >
             <h1 className="title">Roulette Fitness</h1>
@@ -48,6 +49,7 @@ class Index extends React.Component {
             <RestaurantList search={this.state.query} />
           </div>
           <Video path="https://roulette-fitness.s3.ap-southeast-2.amazonaws.com/video_29a6fc3fd8.mp4" />
+          <InfoCard />
         </Row>
         <style jsx>
           {`
