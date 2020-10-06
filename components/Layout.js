@@ -1,8 +1,8 @@
-/* /components/Layout.js */
 import Head from "next/head";
 import Link from "next/link";
 import { unsetToken } from "../lib/auth";
 import { Container, Nav, NavItem } from "reactstrap";
+import { Input, InputGroup, InputGroupAddon, Row } from "reactstrap";
 // import { StateProvider } from "./store.js";
 
 import Btn from "../components/Btn";
@@ -21,6 +21,11 @@ class Layout extends React.Component {
     }
 
     return { pageProps, isAuthenticated };
+  }
+  onChange(e) {
+    //set the state = to the input typed in the search Input Component
+    //this.state.query gets passed into RestaurantList to filter the results
+    this.setState({ query: e.target.value.toLowerCase() });
   }
   render() {
     const { isAuthenticated, children } = this.props;
@@ -65,6 +70,11 @@ class Layout extends React.Component {
                     {this.props.loggedUser}
                   </span>
                 </NavItem>
+                <NavItem className="ml-auto">
+                  <Link href="/workouts">
+                    <a className="nav-link">Workouts</a>
+                  </Link>
+                </NavItem>
                 <NavItem>
                   <Link href="/">
                     <a className="logout" onClick={unsetToken}>
@@ -90,6 +100,18 @@ class Layout extends React.Component {
                   <Link href="/signup">
                     <a className="nav-link"> Sign Up</a>
                   </Link>
+                </NavItem>
+                <NavItem>
+                  <div className="search">
+                    <InputGroup>
+                      <InputGroupAddon addonType="append">
+                        <Link href="/signup">
+                          <a className="nav-link">Search</a>
+                        </Link>
+                      </InputGroupAddon>
+                      <Input onChange={this.onChange.bind(this)} />
+                    </InputGroup>
+                  </div>
                 </NavItem>
               </>
             )}

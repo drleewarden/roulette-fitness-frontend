@@ -334,7 +334,7 @@ class MainTimer extends Component {
                 position: absolute;
                 top: 200px;
                 left: auto;
-                margin: 0 -100px;
+                margin: 0 -50px;
               }
               .App-calendar {
                 position: relative;

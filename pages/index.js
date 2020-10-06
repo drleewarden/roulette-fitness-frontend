@@ -5,6 +5,7 @@ import React, { Fragment } from "react";
 import defaultPage from "../hocs/defaultPage";
 import { Video } from "../components/workouts/video";
 import { InfoCard } from "../components/workouts/infoCardComponent";
+import { HeroTitle } from "../components/LayoutStyles.style";
 import {
   Alert,
   Button,
@@ -38,27 +39,18 @@ class Index extends React.Component {
             style={{ position: "absolute", zIndex: 99 }}
             className="search-container col"
           >
-            <h1 className="title">Roulette Fitness</h1>
-            <div className="search">
-              <InputGroup>
-                <InputGroupAddon addonType="append"> Search </InputGroupAddon>
-                <Input onChange={this.onChange.bind(this)} />
-              </InputGroup>
-            </div>
+            <HeroTitle>Roulette Fitness</HeroTitle>
 
-            <RestaurantList search={this.state.query} />
+            {/* <RestaurantList search={this.state.query} /> */}
           </div>
           <Video path="https://roulette-fitness.s3.ap-southeast-2.amazonaws.com/video_29a6fc3fd8.mp4" />
           <InfoCard />
         </Row>
         <style jsx>
           {`
-            h1.title {
-              font-size: 4rem;
-              font-family: "Montserrat", sans-serif;
-            }
             .search-container {
               position: absolute !important;
+              display: flex;
             }
             .search {
               margin: 20px;

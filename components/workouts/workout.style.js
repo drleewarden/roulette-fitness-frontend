@@ -8,6 +8,7 @@ export const CardButton = styled.button`
   border-radius: 3px;
   display: none;
 `;
+
 export const DisplayNone = styled.button`
   font-size: 777px;
   color: red;
