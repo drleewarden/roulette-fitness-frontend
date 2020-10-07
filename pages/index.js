@@ -39,7 +39,7 @@ class Index extends React.Component {
             style={{ position: "absolute", zIndex: 99 }}
             className="search-container col"
           >
-            <HeroTitle>Roulette Fitness</HeroTitle>
+            <HeroTitle>Workout Now</HeroTitle>
 
             {/* <RestaurantList search={this.state.query} /> */}
           </div>

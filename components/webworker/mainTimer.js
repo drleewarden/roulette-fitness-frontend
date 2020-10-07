@@ -12,7 +12,7 @@ class MainTimer extends Component {
     const { exercises } = props;
     const randomList = exercises.exerciseList.sort(this.randomOrder);
     const firstCluster = randomList.slice(0, 3);
-
+    // console.log(exercises);
     this.intervalId = null;
     this.buttonSize = null;
     this.state = {

@@ -29,7 +29,8 @@ class Layout extends React.Component {
   }
   render() {
     const { isAuthenticated, children } = this.props;
-    const title = "Welcome to Nextjs";
+    const title =
+      "If you are looking to lose weight and burn fat burn, try out a session 3 times a week. Its all free so why not.";
     // const [count, setCount] = useState(0);
     return (
       <div>
@@ -41,7 +42,7 @@ class Layout extends React.Component {
             content="initial-scale=1.0, width=device-width"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+            href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat&display=swap"
             rel="stylesheet"
           ></link>
           <link
