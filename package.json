@@ -26,6 +26,7 @@
     "react-apollo": "^2.2.4",
     "react-countdown-clock": "^2.7.0",
     "react-dom": "^16.6.1",
+    "react-ga": "^3.1.2",
     "react-stripe-elements": "^2.0.1",
     "reactstrap": "^6.5.0",
     "recompose": "^0.30.0",
