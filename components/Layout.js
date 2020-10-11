@@ -4,7 +4,6 @@ import { unsetToken } from "../lib/auth";
 import { Container, Nav, NavItem } from "reactstrap";
 import { Input, InputGroup, InputGroupAddon, Row } from "reactstrap";
 // import { StateProvider } from "./store.js";
-import { initGA, logPageView } from "../utils/analytics";
 
 import Btn from "../components/Btn";
 // import Workouts from "./workouts/index"
@@ -27,13 +26,6 @@ class Layout extends React.Component {
     //set the state = to the input typed in the search Input Component
     //this.state.query gets passed into RestaurantList to filter the results
     this.setState({ query: e.target.value.toLowerCase() });
-  }
-  componentDidMount() {
-    if (!window.GA_INITIALIZED) {
-      initGA();
-      window.GA_INITIALIZED = true;
-    }
-    logPageView();
   }
   render() {
     const { isAuthenticated, children } = this.props;

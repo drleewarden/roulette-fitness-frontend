@@ -15,6 +15,7 @@ import {
   InputGroupAddon,
   Row,
 } from "reactstrap";
+import GALayout from "./pageWrapper";
 
 // import '../assets/styles/app.scss'
 
@@ -33,32 +34,34 @@ class Index extends React.Component {
   }
   render() {
     return (
-      <div className="container-fluid">
-        <Row>
-          <div
-            style={{ position: "absolute", zIndex: 99 }}
-            className="search-container col"
-          >
-            <HeroTitle>Workout Now</HeroTitle>
+      <GALayout>
+        <div className="container-fluid">
+          <Row>
+            <div
+              style={{ position: "absolute", zIndex: 99 }}
+              className="search-container col"
+            >
+              <HeroTitle>Workout Now</HeroTitle>
 
-            {/* <RestaurantList search={this.state.query} /> */}
-          </div>
-          <Video path="https://roulette-fitness.s3.ap-southeast-2.amazonaws.com/video_29a6fc3fd8.mp4" />
-          <InfoCard />
-        </Row>
-        <style jsx>
-          {`
-            .search-container {
-              position: absolute !important;
-              display: flex;
-            }
-            .search {
-              margin: 20px;
-              width: 500px;
-            }
-          `}
-        </style>
-      </div>
+              {/* <RestaurantList search={this.state.query} /> */}
+            </div>
+            <Video path="https://roulette-fitness.s3.ap-southeast-2.amazonaws.com/video_29a6fc3fd8.mp4" />
+            <InfoCard />
+          </Row>
+          <style jsx>
+            {`
+              .search-container {
+                position: absolute !important;
+                display: flex;
+              }
+              .search {
+                margin: 20px;
+                width: 500px;
+              }
+            `}
+          </style>
+        </div>
+      </GALayout>
     );
   }
 }

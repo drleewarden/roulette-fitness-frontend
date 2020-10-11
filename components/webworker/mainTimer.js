@@ -5,6 +5,7 @@ import { Exercise } from "../workouts/card";
 import { LargeCard } from "../workouts/largeCard";
 import { PlayIcon, XCircleIcon, triangleRight } from "@primer/octicons-react";
 import { beep1, beep2 } from "../../assets/sounds/beep";
+import { CardTitle } from "../workouts/workout.style";
 import styles from "./timer.js";
 class MainTimer extends Component {
   constructor(props) {
@@ -230,13 +231,16 @@ class MainTimer extends Component {
       <Fragment>
         <div className="App-calendar">
           <section className="App-timer">
-            <h2>
+            <CardTitle>
               {this.state.exercises[this.state.exerciseClusterNumber].title}
-            </h2>
+            </CardTitle>
           </section>
           <section>{this.activateExerciseImage()}</section>
           {this.state.workout && (
-            <Progress value={this.state.percentage} />
+            <Progress
+              className="progress-bar-wrapper"
+              value={this.state.percentage}
+            />
           )}{" "}
           {this.state.rest && (
             <Progress color="danger" value={this.state.percentage} />
@@ -262,6 +266,10 @@ class MainTimer extends Component {
 
         <style jsx>
           {`
+            .progress-bar-wrapper {
+              height: 500px;
+            }
+
             .App-calendar {
               text-align: center;
               position: absolute;

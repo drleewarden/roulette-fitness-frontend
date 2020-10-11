@@ -13,3 +13,9 @@ export const DisplayNone = styled.button`
   font-size: 777px;
   color: red;
 `;
+
+export const CardTitle = styled.h3`
+  font-size: 2rem;
+  font-weight: 100;
+  font-family: "DM Serif Display", serif;
+`;

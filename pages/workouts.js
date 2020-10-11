@@ -8,6 +8,7 @@ import Stopwatch from "../components/StopWatch";
 import { Container } from "reactstrap";
 import Cart from "../components/Cart/Cart";
 import defaultPage from "../hocs/defaultPage";
+import GALayout from "./pageWrapper";
 
 class Workouts extends React.Component {
   constructor(props) {
@@ -39,7 +40,9 @@ class Workouts extends React.Component {
         <>
           {/* {this.loadList ? <Stopwatch exercises={exercises} /> : ''} */}
           {/* <MainTimer /> */}
-          <GetWorkout exerciseList={exercises} />
+          <GALayout>
+            <GetWorkout exerciseList={exercises} />
+          </GALayout>
         </>
       );
     }
