@@ -33,7 +33,7 @@ class Workouts extends React.Component {
       isAuthenticated,
     } = this.props;
 
-    if (error) return "Error Loading Dishes";
+    if (error) return "Error Loading Exercise";
 
     if (exercises) {
       return (
@@ -50,18 +50,22 @@ class Workouts extends React.Component {
   }
 }
 
-const GET_EXERCISES_DISHES = gql`
+const GET_EXERCISES = gql`
   {
     exercises {
       unid
       title
-      description
+      type
+      equipment
       image {
         url
       }
+      description
     }
   }
 `;
+console.log("data", GET_EXERCISES);
+
 // The `graphql` wrapper executes a GraphQL query and makes the results
 // available on the `data` prop of the wrapped component (RestaurantList)
 
@@ -69,7 +73,7 @@ export default compose(
   withRouter,
   defaultPage,
   withContext,
-  graphql(GET_EXERCISES_DISHES, {
+  graphql(GET_EXERCISES, {
     props: ({ data }) => ({ data }),
   })
 )(Workouts);

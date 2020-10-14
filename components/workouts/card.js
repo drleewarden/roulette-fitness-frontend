@@ -50,11 +50,13 @@ export const Exercise = (props) => {
           key={exercise.unid}
         >
           <div className="card-image-container">
-            <CardImg
-              top={true}
-              style={{ maxHeight: 350, borderRadius: "1rem" }}
-              src={`${exercise.image[0].url}`}
-            />
+            {exercise.image.length > 0 && (
+              <CardImg
+                top={true}
+                style={{ maxHeight: 350, borderRadius: "1rem" }}
+                src={`${exercise.image[0].url}`}
+              />
+            )}
           </div>
 
           <CardBody

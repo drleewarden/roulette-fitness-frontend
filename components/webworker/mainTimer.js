@@ -1,22 +1,32 @@
 import React, { Component, Fragment } from "react";
 import * as workerTimers from "worker-timers";
-import { Progress } from "reactstrap";
+import {
+  Progress,
+  Jumbotron,
+  Button,
+  Collapse,
+  Card,
+  CardBody,
+} from "reactstrap";
 import { Exercise } from "../workouts/card";
 import { LargeCard } from "../workouts/largeCard";
 import { PlayIcon, XCircleIcon, triangleRight } from "@primer/octicons-react";
 import { beep1, beep2 } from "../../assets/sounds/beep";
 import { CardTitle } from "../workouts/workout.style";
 import styles from "./timer.js";
+import { Thumbnail } from "../thumbnail";
+
 class MainTimer extends Component {
   constructor(props) {
     super(props);
     const { exercises } = props;
-    const randomList = exercises.exerciseList.sort(this.randomOrder);
-    const firstCluster = randomList.slice(0, 3);
+    this.randomList = exercises.exerciseList.sort(this.randomOrder);
+    const firstCluster = this.randomList.slice(0, 3);
     // console.log(exercises);
     this.intervalId = null;
     this.buttonSize = null;
     this.state = {
+      isOpen: false,
       count: 0,
       exerciseNumber: 0,
       exerciseClusterNumber: 0,
@@ -25,7 +35,7 @@ class MainTimer extends Component {
       minutes: 0,
       rounds: 0,
       cluster: 0,
-      exercises: randomList,
+      exercises: this.randomList,
       clusterArray: firstCluster,
       percentage: 0,
       workout: false,
@@ -206,8 +216,10 @@ class MainTimer extends Component {
     return (percent * 100) / num;
   }
 
-  componentDidMount = () => {
-    // this.worker = new WebWorker(worker);
+  toggle = () => {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
   };
   clusterCards() {
     if (!this.state.clusterArray) {
@@ -227,6 +239,7 @@ class MainTimer extends Component {
     });
   }
   render() {
+    console.log("xxx", this.randomList);
     return (
       <Fragment>
         <div className="App-calendar">
@@ -262,6 +275,35 @@ class MainTimer extends Component {
             {/* <Stopwatch timer={this.state.seconds} exercises={this.exercises} /> */}
           </section>
           <h2>exercise: {this.state.exerciseNumber}</h2>
+          <div>
+            <Button
+              color="secondary"
+              onClick={this.toggle}
+              style={{ marginBottom: "1rem" }}
+            >
+              View your workout
+            </Button>
+          </div>
+          <Collapse isOpen={this.state.isOpen}>
+            <Jumbotron>
+              <div className="Thumbnail__wrapper">
+                {this.randomList.map((exercise) => {
+                  return (
+                    <Fragment>
+                      {exercise.image.length > 0 && (
+                        <Thumbnail
+                          img={exercise.image[0].url}
+                          title={exercise.title}
+                          equipment={exercise.equipment}
+                          type={exercise.type}
+                        />
+                      )}
+                    </Fragment>
+                  );
+                })}
+              </div>
+            </Jumbotron>
+          </Collapse>
         </div>
 
         <style jsx>
@@ -303,10 +345,12 @@ class MainTimer extends Component {
             h1 {
               font-family: "EB Garamond", serif;
             }
+
             .w-33 {
               width: 33%;
               padding: 15px;
             }
+
             .floating-text {
               padding: 0;
               border: 0;
@@ -337,6 +381,10 @@ class MainTimer extends Component {
               color: green;
             }
             @media (min-width: 992px) {
+              .Thumbnail__wrapper {
+                display: flex;
+                flex-wrap: wrap;
+              }
               .blank-btn {
                 background: rgba(255, 255, 255, 0.5);
                 position: absolute;

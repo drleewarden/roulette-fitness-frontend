@@ -9,7 +9,7 @@ import {
   CardBody,
   CardColumns,
   CardImg,
-  CardSubtitle
+  CardSubtitle,
 } from "reactstrap";
 import { CardText, CardTitle, Col, Row } from "reactstrap";
 
@@ -17,25 +17,22 @@ const RestaurantList = (
   { data: { loading, error, restaurants }, search },
   req
 ) => {
-  console.log('res',restaurants)
- 
+  console.log("res", restaurants);
+
   if (error) return "Error loading restaurants";
   //if restaurants are returned from the GraphQL query, run the filter query
   //and set equal to variable restaurantSearch
 
   if (restaurants && restaurants.length) {
     //searchQuery
-    const searchQuery = restaurants.filter(query =>
+    const searchQuery = restaurants.filter((query) =>
       query.name.toLowerCase().includes(search)
     );
     if (searchQuery.length != 0) {
-      
       return (
         <div>
-          
           <div className="h-100">
-            {searchQuery.map(res => (
-         
+            {searchQuery.map((res) => (
               <Card
                 style={{ width: "30%", margin: "0 10px" }}
                 className="h-100"
@@ -110,6 +107,6 @@ RestaurantList.getInitialProps = async ({ req }) => {
 // available on the `data` prop of the wrapped component (RestaurantList)
 export default graphql(query, {
   props: ({ data }) => ({
-    data
-  })
+    data,
+  }),
 })(RestaurantList);

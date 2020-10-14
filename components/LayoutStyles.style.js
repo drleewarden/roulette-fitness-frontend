@@ -2,6 +2,17 @@ import styled, { css } from "styled-components";
 const mediaQuery = {
   m: "767px",
 };
+
+/// TEXT
+export const TextTiny = styled.span`
+  font-size: 0.7rem;
+`;
+
+/// CARD
+export const CardH4 = styled.h4`
+  padding: 2rem;
+`;
+
 // Create a Title component that'll render an <h1> tag with some styles
 export const Cat = styled.h2`
   font-size: 3rem;
@@ -26,7 +37,11 @@ export const HeroTitle = styled.h1`
   font-family: "DM Serif Display", serif;
   color: white;
 `;
-
+export const ThumbnailCard = styled.div`
+  width: 33.33%;
+  display: flex;
+  padding-bottom: 2rem;
+`;
 export const InfoCardStyle = styled.article`
   padding: 2rem;
   background-color: #e7cfcf;
