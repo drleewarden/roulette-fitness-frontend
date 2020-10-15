@@ -33,7 +33,7 @@ class Workouts extends React.Component {
       isAuthenticated,
     } = this.props;
 
-    if (error) return "Error Loading Exercise";
+    if (error) return "Error Loading Exercise" + error;
 
     if (exercises) {
       return (
@@ -57,6 +57,9 @@ const GET_EXERCISES = gql`
       title
       type
       equipment
+      video {
+        url
+      }
       image {
         url
       }

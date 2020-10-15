@@ -281,7 +281,7 @@ class MainTimer extends Component {
               onClick={this.toggle}
               style={{ marginBottom: "1rem" }}
             >
-              View your workout
+              {this.state.isOpen ? "Hide your" : "View your"} workout
             </Button>
           </div>
           <Collapse isOpen={this.state.isOpen}>
