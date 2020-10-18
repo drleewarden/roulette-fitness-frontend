@@ -9,8 +9,6 @@ export const LargeCard = (props) => {
       exercise.video.url.split(".").length - 1
     ];
   }
-
-  console.log("ex", extention);
   const height = "550px";
   return (
     <Fragment>
@@ -27,7 +25,7 @@ export const LargeCard = (props) => {
       )}
       {extention === "mp4" && (
         <div className="large-card-container">
-          <Video src={exercise.video.url} />
+          <Video path={exercise.video.url} />
         </div>
       )}
 

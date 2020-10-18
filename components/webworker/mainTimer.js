@@ -15,6 +15,7 @@ import { beep1, beep2 } from "../../assets/sounds/beep";
 import { CardTitle } from "../workouts/workout.style";
 import styles from "./timer.js";
 import { Thumbnail } from "../thumbnail";
+import { pushToStrapi } from "../../lib/pushtostrapi";
 
 class MainTimer extends Component {
   constructor(props) {
@@ -217,6 +218,7 @@ class MainTimer extends Component {
   }
 
   toggle = () => {
+    // pushToStrapi();
     this.setState({
       isOpen: !this.state.isOpen,
     });
@@ -226,8 +228,6 @@ class MainTimer extends Component {
       return;
     }
     return this.state.clusterArray.map((exercise, ind) => {
-      console.log("current:", this.state.exerciseClusterNumber);
-
       return (
         <Exercise
           inde={ind}
@@ -239,7 +239,6 @@ class MainTimer extends Component {
     });
   }
   render() {
-    console.log("xxx", this.randomList);
     return (
       <Fragment>
         <div className="App-calendar">

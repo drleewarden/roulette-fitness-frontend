@@ -5,7 +5,7 @@ import { ThumbnailCard, TextTiny, CardH4 } from "./LayoutStyles.style";
 export const Thumbnail = (props) => {
   return (
     <ThumbnailCard>
-      <img width="100" src={props.img} />
+      <img width="100" height="100" src={props.img} />
       <CardH4>
         {props.title}
         <div>

@@ -1,4 +1,4 @@
-/* /pages/signin.js */ 
+/* /pages/signin.js */
 import React from "react";
 
 import defaultPage from "../hocs/defaultPage";
@@ -14,7 +14,7 @@ import {
   FormGroup,
   Label,
   Input,
-  FormText
+  FormText,
 } from "reactstrap";
 import Cookies from "js-cookie";
 
@@ -24,10 +24,10 @@ class SignIn extends React.Component {
     this.state = {
       data: {
         email: "",
-        password: ""
+        password: "",
       },
       loading: false,
-      error: ""
+      error: "",
     };
   }
   componentDidMount() {
@@ -43,7 +43,7 @@ class SignIn extends React.Component {
   }
   onSubmit() {
     const {
-      data: { email, username, password }
+      data: { email, username, password },
     } = this.state;
     const { context } = this.props;
 

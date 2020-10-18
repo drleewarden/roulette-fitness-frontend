@@ -10,7 +10,8 @@ export const TextTiny = styled.span`
 
 /// CARD
 export const CardH4 = styled.h4`
-  padding: 2rem;
+  padding: 0 1rem;
+  text-align: left;
 `;
 
 // Create a Title component that'll render an <h1> tag with some styles
@@ -38,9 +39,11 @@ export const HeroTitle = styled.h1`
   color: white;
 `;
 export const ThumbnailCard = styled.div`
-  width: 33.33%;
   display: flex;
   padding-bottom: 2rem;
+  @media only screen and (min-width: ${mediaQuery.m}) {
+    width: 33.33%;
+  }
 `;
 export const InfoCardStyle = styled.article`
   padding: 2rem;

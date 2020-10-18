@@ -58,7 +58,6 @@ export const Exercise = (props) => {
               />
             )}
           </div>
-
           <CardBody
             style={{
               textAlign: "left",
