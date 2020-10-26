@@ -1,4 +1,4 @@
-# Next.js Strapi Delivroo clone
+# Next.js Strapi workout app frontend
 
 ### Install dependencies
 ```bash
