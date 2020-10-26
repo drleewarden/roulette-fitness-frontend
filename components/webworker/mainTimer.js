@@ -5,8 +5,6 @@ import {
   Jumbotron,
   Button,
   Collapse,
-  Card,
-  CardBody,
 } from "reactstrap";
 import { Exercise } from "../workouts/card";
 import { LargeCard } from "../workouts/largeCard";
@@ -16,7 +14,7 @@ import { CardTitle } from "../workouts/workout.style";
 import styles from "./timer.js";
 import { Thumbnail } from "../thumbnail";
 import { pushToStrapi } from "../../lib/pushtostrapi";
-
+import { Badge, TextTiny } from "../LayoutStyles.style"
 class MainTimer extends Component {
   constructor(props) {
     super(props);
@@ -205,10 +203,16 @@ class MainTimer extends Component {
         this.state.clusterArray[this.state.exerciseClusterNumber] != undefined
       ) {
         return (
-          <LargeCard
-            exercise={this.state.clusterArray[this.state.exerciseClusterNumber]}
-            key={this.state.clusterArray[this.state.exerciseClusterNumber].unid}
-          />
+          <Fragment>
+            <Badge className="badge badge-danger">
+              {this.state.rest && <TextTiny>NEXT</TextTiny>}
+            </Badge>
+            <LargeCard
+                        exercise={this.state.clusterArray[this.state.exerciseClusterNumber]}
+                        key={this.state.clusterArray[this.state.exerciseClusterNumber].unid}
+                      />
+          </Fragment>
+          
         );
       }
     }
@@ -307,6 +311,7 @@ class MainTimer extends Component {
 
         <style jsx>
           {`
+          
             .progress-bar-wrapper {
               height: 500px;
             }
@@ -327,6 +332,7 @@ class MainTimer extends Component {
             }
             .progress-bar {
               background-color: #ff5722;
+              z-index: 10;
             }
             .progress {
               border-radius: 0px;
@@ -338,6 +344,10 @@ class MainTimer extends Component {
               border-radius: 100px;
               border: 0;
               padding: 0;
+              margin-top: -50px;
+              z-index: 100;
+              position: absolute;
+              margin-left: -30px;
               margin-top: -50px;
             }
 

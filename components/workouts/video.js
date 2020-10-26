@@ -23,6 +23,7 @@ export const Video = (props) => {
           .full {
             width: 100%;
             border: none;
+            z-index: 1;
           }
         `}
       </style>

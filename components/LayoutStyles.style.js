@@ -6,6 +6,7 @@ const mediaQuery = {
 /// TEXT
 export const TextTiny = styled.span`
   font-size: 0.7rem;
+  margin: 0;
 `;
 
 /// CARD
@@ -45,6 +46,13 @@ export const ThumbnailCard = styled.div`
     width: 33.33%;
   }
 `;
+export const Badge = styled.div`
+  position: absolute;
+  top: 15%;
+  left: 0;
+  width: 100px;
+  padding: 10px;
+`
 export const InfoCardStyle = styled.article`
   padding: 2rem;
   background-color: #e7cfcf;
